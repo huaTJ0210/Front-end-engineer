@@ -1,0 +1,16 @@
+PODS:
+  - SKJavaScriptBridge (1.0.3)
+
+DEPENDENCIES:
+  - SKJavaScriptBridge (~> 1.0.3)
+
+SPEC REPOS:
+  trunk:
+    - SKJavaScriptBridge
+
+SPEC CHECKSUMS:
+  SKJavaScriptBridge: 1485c4d7853615a71e55beb3fb662f63e54d0f30
+
+PODFILE CHECKSUM: ea07639bfddfdae97c12c5199ce894a5d974df95
+
+COCOAPODS: 1.9.3

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PlayDS.iml" filepath="$PROJECT_DIR$/PlayDS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/PlayDS1.iml" filepath="$PROJECT_DIR$/src/PlayDS1.iml" />
+    </modules>
+  </component>
+</project>

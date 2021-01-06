@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function sendMsgToApp() {
+        window.webkit.messageHandlers.notification.postMessage({ body: 'some data' });
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="sendMsgToApp()">向客户端发送消息</button>
+  </body>
+</html>
