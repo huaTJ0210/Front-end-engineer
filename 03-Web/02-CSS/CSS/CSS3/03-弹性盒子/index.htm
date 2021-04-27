@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: row;/*指定弹性子元素以何种方式在弹性容器内部排列：row column*/
+            justify-content: space-between;/*指定弹性子元素在主轴（main axis的对齐方式）*/
+            align-items: center;/*指定弹性子元素在侧轴（）的对齐方式*/
+            width: 400px;
+            height: 400px;
+            background:lightgray;
+        }
+        .flex-item{
+            background-color: cornflowerblue;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+        .flex-item1{
+            align-self: flex-end;/*设置弹性子元素在侧轴的位置，可以特殊指定对应元素*/
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+       <div class="flex-item">item1</div>
+       <div class="flex-item">item2</div>
+       <div class="flex-item flex-item1">item3</div>
+   </div> 
+</body>
+</html>

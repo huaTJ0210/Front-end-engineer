@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 媒体查询引入资源 -->
+    <link
+      rel="stylesheet"
+      media="screen and (min-width:320px)"
+      href="320px.css"
+    />
+    <link
+      rel="stylesheet"
+      media="screen and (min-width:620px)"
+      href="640px.css"
+    />
+    <style>
+      /*媒体查询的顺序从小到大开始*/
+      /* 1:小于540px页面背景颜色变为蓝色 */
+      @media screen and (max-width: 539px) {
+        body {
+          background-color: blue;
+        }
+      }
+      /*2:540~970 页面颜色改为绿色*/
+      /* @media screen and (min-width: 540px) and (max-width: 969px) {
+        body {
+          background-color: green;
+        }
+      } */
+      @media screen and (min-width: 540px) {
+        body {
+          background-color: green;
+        }
+      }
+      /*3: 大于970 页面颜色改为红色*/
+      @media screen and (min-width: 970px) {
+        body {
+          background-color: red;
+        }
+      }
+    </style>
+  </head>
+  <body></body>
+</html>

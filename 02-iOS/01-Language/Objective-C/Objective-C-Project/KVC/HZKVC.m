@@ -25,4 +25,10 @@
 
 @implementation HZKVC
 
+-(void)test{
+    HZKVC *obj = [[HZKVC alloc] init];
+    NSString *name =  [obj valueForKey:@"name"];
+    NSLog(@"%@",name);
+}
+
 @end

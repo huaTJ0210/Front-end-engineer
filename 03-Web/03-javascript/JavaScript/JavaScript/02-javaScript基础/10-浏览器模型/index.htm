@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>浏览器的模型概述</title>
+    <!--integrity保证外部引入的JavaScript脚本不被篡改-->
+    <script src="./utils.js" integrity="SHA256-ASDJHFJSDHGJDHJGSDGH="></script>
+    <!--浏览器遇到defer修饰的脚本会去并行下载，等DOM加载生成后，再执行脚本-->
+    <script src="./a.js" defer></script>
+    <!--遇到async修饰的脚本会去并行下载，一旦下载完毕就会立即执行-->
+    <script src="./b.js" async></script>
+
+    <script>
+      /*
+        (1) 页面引入JavaScript脚本的几种做法
+         + 使用<script><\/script>书写代码
+         + 使用 <script src="脚本路径"><\/script> 引入代码
+        (1-1) defer 和 async 修饰<script>标签的区别
+         + defer：并行下载，推迟脚本的执行到DOM完全解析完毕
+         + async: 并行下载，但是脚本下载完毕后会阻塞DOM的解析，立即执行脚本
+      */
+      // (2) 渲染引擎 : 将网页代码渲染为用户视觉可以感知的平面文档；
+      /*
+        (2-1): 渲染引擎处理网页的四个阶段：
+         + 解析代码，将HTML转为DOM，CSS解析为CSSOM；
+         + 对象合成：将DOM和CSSDOM合成一个渲染树；
+         + 布局：计算出渲染树的布局(layout)
+         + 绘制：将渲染树绘制到屏幕
+        
+        （2-2）重流：重新布局 ；
+        （2-3）重绘：重新绘制 ；使用requestAnimationFrame();将需要的绘制推迟到下一次重绘之前执行，而不是立即要求页面重绘
+
+      */
+
+      // (3) javascript引擎：即时编译（just in time），将源码编译为机器码运行
+    </script>
+  </head>
+  <body></body>
+</html>

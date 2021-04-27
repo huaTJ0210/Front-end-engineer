@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<import src="item.wxml" />
+
+<view class="container">
+ <button type="primary" bindtap="takePhoto">拍照</button>
+  <web-view src="{{url}}" class="webview"></web-view>
+  
+</view>

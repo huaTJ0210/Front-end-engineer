@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      
+        // (1) <img> 页面元素；继承HTMLImageElement接口；浏览器提供了原生构造函数Image
+        // （3）事件属性
+        // <img src="example/jpg" onload="loadImage()">
+        function loadImage(){
+            console.log('图片加载完成！')
+        }
+
+    </script>
+  </head>
+  <body>
+    <img
+      srcset="
+        example-320w.jpg 320w,
+        example-480w.jpg 480w,
+        example-800w.jpg 800w
+      "
+      sizes="(max-width: 320px) 280px,
+             (max-width: 480px) 440px,
+            800px"
+      id="myImg"
+      src="example-800w.jpg"
+    />
+
+  </body>
+</html>

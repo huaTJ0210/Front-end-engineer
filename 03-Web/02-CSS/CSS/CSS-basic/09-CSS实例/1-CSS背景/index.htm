@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS背景</title>
+    <style>
+        body{
+            background-image: url('./img_fjords.jpg');
+            background-repeat: no-repeat; /*水平方向上重复：repeat-x*/
+            background-position: right top;
+            margin-right: 200px;/*左侧有文本的情况下设置边距*/
+            background-attachment: fixed;/*图片不跟随页面其他元素滚动而滚动*/
+        }
+        h1{
+            background-color: aqua;
+        }
+        p{
+            background-color: burlywood;
+        }
+    </style>
+</head>
+<body>
+    <h1>设置页面的背景颜色</h1>
+    <p>段落文本内容</p>
+</body>
+</html>

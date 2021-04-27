@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <hobby :hobbies="hobbies" @selecthobby="selecthobby"></hobby>
+    </div>
+    <!-- 爱好展示的子组件 -->
+    <template id="hobby">
+      <div>
+        <ul>
+          <li v-for="hobby in hobbies">
+            {{hobby}} <button @click="selecthobby(hobby)">选择</button>
+          </li>
+        </ul>
+      </div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      // (1) 创建子组件
+      const hobby = {
+        // props: ['hobbies'], // 组件的数据从父组件中获取
+        props: {
+          hobbies: Array, //进行类型的限制或者提供默认值
+          message: {
+            type: String, // 指定message的数据类型
+            default: '默认值', // 指定message默认值
+            required: true, // 子组件必须传递此值
+          },
+        },
+        template: '#hobby', // 使用<template>标签创建，绑定对应的id
+        methods: {
+          selecthobby(hobby) {
+            console.log('child----:' + hobby);
+            this.$emit('selecthobby', hobby);
+          },
+        },
+      };
+      // (0) 根组件
+      new Vue({
+        el: '#app',
+        data: {
+          hobbies: ['足球', '篮球', '乒乓球', '羽毛球', '高尔夫球'],
+        },
+        // (2) 注册子组件
+        components: {
+          hobby,
+        },
+        methods: {
+          selecthobby(hobby) {
+            console.log('father----:' + hobby);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

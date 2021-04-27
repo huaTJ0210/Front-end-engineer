@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rem适配布局</title>
+    <script>
+      /*
+      (1) rem
+       + 页面布局文字随着屏幕大小变化而变化
+       + 流式布局和flex布局针对宽度，那高度如何设置
+       + 怎么样让屏幕发生变化，宽高等比例变化
+       + rem（root em）单位：相对于html元素字体大小;通过rem整体控制布局的宽高
+       + em：是父元素的文字大小
+      (2) 媒体查询语法
+      + Media Query ： 使用@media查询，可以针对不同的媒体类型定义不同的样式
+      + @media 可以针对不同的屏幕尺寸设置不同的样式
+      + 当重置浏览器大小的过程中，页面也会根据浏览器的宽度和高度重新渲染页面
+      + 目前针对苹果手机、android手机、平板等设备都用得到多媒体查询
+    */
+    </script>
+
+    <style>
+      html {
+        font-size: 14px;
+      }
+      div {
+        font-size: 12px;
+      }
+      .em {
+        width: 10em;
+        height: 10em;
+        background-color: rebeccapurple;
+      }
+
+      .rem {
+        width: 10rem;
+        height: 10rem;
+        background-color: aqua;
+      }
+      /*mediatype(媒体类型): all print  screen*/
+      /*
+     (1)关键字 
+      + and ：即
+  
+     (2)媒体特性
+     + width 
+     + min-width：定义媒体的最小可见区域
+     + max-width：定义媒体设备的最大可见区域
+    */
+      @media screen and (max-width: 800px) {
+        body {
+          background-color: pink;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        body {
+          background-color: green;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p class="em"></p>
+      <p class="rem"></p>
+    </div>
+  </body>
+</html>

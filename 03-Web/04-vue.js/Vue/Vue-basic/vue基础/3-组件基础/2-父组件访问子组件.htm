@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>父组件</div>
+      <button @click="callChildMethods">调用子组件中的方法</button>
+      <cpn ref="cpn"></cpn>
+    </div>
+    
+    <template id="cpn">
+      <div>子组件</div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      new Vue({
+        el:'#app',
+        data: {},
+        methods: {
+          callChildMethods() {
+            this.$refs.cpn.showMessage();
+          },
+        },
+        components: {
+          cpn: {
+            template: '#cpn',
+            methods: {
+              showMessage() {
+                alert('子组件的方法');
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

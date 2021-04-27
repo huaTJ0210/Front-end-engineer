@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定时器</title>
+    <script>
+      /*
+          （1） JavaScript提供定时执行代码的功能：定时器（timer）主要由setTimeout()和setInterval()
+          两个函数完成，它们向任务队列添加定时任务；
+        */
+
+      // (2) setTimeout(): 延迟一定的时间执行代码
+      var x = 1;
+      var obj = {
+        x: 2,
+        y: function () {
+          console.log(this.x);
+        },
+      };
+      setTimeout(obj.y, 1000); // obj.y被调用时this指向的是window；
+      // (2-1): 修复this的指向
+      setTimeout(function () {
+        obj.y();
+      }, 1000);
+      // (2-2)：修复this的指向
+      setTimeout(obj.y.bind(obj), 1000);
+
+      /*
+        (3) setInterval()：某个任务每隔一段时间就执行一次;
+        setInterval指定的是“开始执行”的时间间隔，并不考虑每次任务执行所消耗的时间；
+      */
+      var i = 1;
+      var timer = setInterval(function () {
+        console.log(2);
+      }, 1000);
+
+      // （3-1）为了保证两次执行的间隔时间一致
+      var x = 1;
+      var timer = setTimeout(function f() {
+        // ...保证任务的执行是在当前任务执行完成后2秒
+        timer = setTimeout(f, 2000);
+      }, 2000);
+
+      // (4) 清除计时器
+      var id1 = setTimeout(function () {}, 2000);
+      var id2 = setInterval(function () {}, 2000);
+      clearTimeout(id1);
+      clearInterval(id2);
+      /*
+        (5) 业务需求：
+        用户输入的文本触发‘keydown’事件，发送ajax请求，
+        缺点：连续的输入会造成大量的ajax通讯，会产生一定的性能问题；
+        可以通过设置门槛值，表示两次通讯的最小时间间隔
+        这种做法叫做debounce（防抖动）
+      */
+      $('textarea').on('keydown', debounce(ajaxAction, 2500));
+
+      function debounce(fn, delay) {
+        var timer = null; // 声明计时器
+        return function () {
+          var context = this;
+          var args = arguments;
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            fn.apply(context, args);
+          }, delay);
+        };
+      }
+
+      // 节流throttle代码：
+      var throttle = function (func, delay) {
+        var timer = null;
+        return function () {
+          var context = this;
+          var args = arguments;
+          if (!timer) {
+            timer = setTimeout(function () {
+              fn.apply(context, args);
+              clearTimeout(timer);
+            }, delay);
+          }
+        };
+      };
+
+      /*
+        (6) 运行机制：
+        setTimeout和setInterval的运行机制是将代码移除当前的事件循环，
+        等到下一轮事件循环，再检查是否到了指定时间，若到了指定时间就执行，否则继续等待下一次
+        事件循环；
+      */
+      // (6-1): 3秒钟后输出回一次：2；
+      setInterval(function () {
+        console.log(2);
+      }, 1000);
+      sleep(3000);
+      function sleep(ms) {
+        var start = Date.now();
+        while (Date.now() - start < ms) {}
+      }
+
+      /*
+        (7) setTimeout(f,0);
+         函数f不会立即执行，要等待此次事件循环的同步任务执行完毕后才能执行
+      */
+      setTimeout(function () {
+        console.log(1);
+      }, 0);
+      console.log(2); // 先输出：2 , 再输出：1
+    </script>
+  </head>
+  <body></body>
+</html>

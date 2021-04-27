@@ -1,0 +1,7 @@
+.special {
+  color: red;
+  text-align: left;/*文字的水平对齐*/
+  text-decoration: line-through;/*web本的修饰*/
+  text-indent: 2em; /*文本首行缩进*/
+  line-height: 50px; /*行间距：设置字体大小 + 8*/
+}

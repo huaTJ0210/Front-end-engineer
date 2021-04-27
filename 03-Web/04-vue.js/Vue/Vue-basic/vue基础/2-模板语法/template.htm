@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="say">{{array[0]}}</button>
+        <button v-on:click="sayButton">{{text1}}</button>
+        <p v-if="seen">now you see me !!</p>
+        <p v-else>now is hidden!!</p>
+        <a v-bind:href="url">百度</a>
+        <p>计算属性：{{reversedMessage}}</p>
+        <p :style="{fontSize:fontSize}">绑定样式</p>
+
+        <div>
+            <ul>
+                <li v-for="item in items" :key="item.message">
+                    {{item.message}}
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</body>
+<script>
+    /*
+     条件渲染：
+     v-if与v-show的区别：
+     v-if:有更高的切换开销，主要是事件监听器和子组件会被销毁和重建
+     v-show:有更高的初始化开销，切换时只是简单的做CSS切换[display]
+    */ 
+    /*
+     v-for:用于列表的渲染
+    */
+    new Vue({
+        el:'#app',
+        data:{
+            text:'hello',
+            text1:'button',
+            seen: false,
+            url:'www.baidu.com',
+            question:'',
+            fontSize:'30px',
+            items:[
+                {
+                    message:'Foo'
+                },
+                {
+                    message: 'Bar'
+                }
+            ],
+            array:[
+                1,2
+            ],
+            hua:{
+                name:'hua'
+            }
+        },
+        methods:{
+            say(){
+                // this.array[0] = 12; 这样修改不行
+                this.array = [12,2]; //这种可以
+            },
+            sayButton(){
+                alert(this.text1);
+            }
+        },
+        computed:{
+            // 计算属性getter
+            // 计算属性基于他的响应式依赖来计算值
+            // 如果响应式依赖不发生改变，那么计算属性就使用缓存的值
+            reversedMessage(){
+                return this.text.split('').reverse().join('')
+            }
+        },
+        watch:{
+            // 自定义监听器，来适应业务场景的需要
+            question:function(newValue,oldValue){
+                console.log(newValue,oldValue)
+            }
+        }
+    });
+</script>
+</html>

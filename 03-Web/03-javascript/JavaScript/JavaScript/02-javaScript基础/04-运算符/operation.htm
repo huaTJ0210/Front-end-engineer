@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+      /*****************（一）算数运算符*************************/ 
+
+        //(1) JavaScript中由于 + 运算符的重载导致，导致在运算子不同时产生的结果不一样
+        var a = 1 + true  // 2
+        var b = 1 + 'true' // '1true'
+        var c = '3' + 4 + 5 // '345' 运算顺序从左到右
+        var d = 3 + 4 + '5' // '75' 
+        // (2) 除了+运算符以外，其他运算符都不会发生重载
+        /*
+          (3) 对象相加
+          运算子为对象，则对象会先自动调用valueOf方法；
+          obj.valueOf();// {p:1}
+          然后再调用toString();
+          obj.valueOf().toString();// [object object]
+                  */ 
+        var obj = {p:1}
+        obj + 2 // "[object object]2"
+
+        //(4) 余数运算符 
+        -1 % 2 // -1
+        1 % -2 // 1
+        // 正确的写法
+        function isOdd(n) {
+          return Math.abs(n % 2) === 1;
+        }
+        isOdd(-5) // true
+        isOdd(-4) // false
+        // (5)指数运算符 [从右向左运算的]
+        x ** y 
+
+
+        /*****************（二）比较运算符*************************/ 
+        // (1) 字符串的比较是根据unicode的码点进行比较的
+
+        // (2) 任何值包括NaN本身使用非相等运算符做比较返回都是false
+
+        /*
+          (3) 
+          严格相等运算符（===）比较的是是否为“同一个值”，类型不同直接返回flase；对于复合类型（引用类型），
+          比较是否引用的是同一个地址；
+          相等运算符（==）比较的是“值是否相等”，类型不同会先转成原始类型，再进行比较
+        */ 
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

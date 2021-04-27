@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+em,
+i {
+  font-style: normal;
+}
+li {
+  list-style-type: none;
+}
+img {
+  border: 0;
+  /*取消图片底端有空白间隙的问题*/
+  vertical-align: middle;
+}
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+button,
+input {
+  border: 0;
+  outline: none;
+}

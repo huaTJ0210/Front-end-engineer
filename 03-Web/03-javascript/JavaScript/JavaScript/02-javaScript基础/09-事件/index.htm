@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <button id="btn">按钮</button>
+      <button onclick="console.log('属性的值是将要执行的代码，而不是一个函数')">
+        HTML的on-属性
+      </button>
+    </div>
+    <!--以下设定只会在冒泡阶段触发：先输出：1，再输出：2；即子元素开始冒泡到父元素-->
+    <div onclick="console.log(2)">
+      <button onclick="console.log(1)">点击</button>
+    </div>
+  </body>
+  <script>
+    /*****************<一> EventTarget************************/
+    /*
+        事件：
+        （1）程序各部分之间的一种通讯方式，
+        EventTarget接口：
+        （1）所有的节点对象都部署了这个接口；
+        （2）该接口提供了3个方法：addEventListener、removeEventListener、dispatchEvent
+      */
+    // (1) 事件监听： addEventListener
+    var button = document.getElementById('btn');
+    var handleEvent = function (e) {
+      // e.preventDefault(); 会有警告
+      console.log('button click!');
+    };
+    var options = {
+      capture: true, // 是否在捕获阶段触发监听函数
+      once: true, // 监听函数只执行一次
+      passive: true, // 表示监听函数不会调用，preventDefault方法;如果调用了监控台会有警告
+    };
+    button.addEventListener('click', handleEvent, options);
+    // （2）事件移除：removeEventListener;着重注意参数要与addEventListener保持一致；
+    // button.removeEventListener('click', handleEvent, options);
+    // (3) 监听函数内部的this指向事件所在的对象
+    // (4) 在当前节点上触发指定的事件
+    var event = new Event('click');
+    button.dispatchEvent(event);
+
+    /*****************<二> 监听函数************************/
+    // (1): HTML的on-属性方式：违反了JavaScript与HTML代码相分离的原则
+    /*
+    只会在冒泡阶段触发；因此执行的结果是先输出1，然后再输出2
+      <div onclick="console.log(2)">
+        <button onclick="console.log(1)">点击</button>
+      </div>
+    */
+    /*
+      (2): 元素节点的事件属性； window.onload = doSomething; 同一个事件只能定义一个监听函数
+      也仅是在冒泡阶段触发事件；
+    */ 
+    /*
+      (3): EventTarget.addEventListener是推荐的指定监听函数的方法；
+       1、同一个事件可以添加多个监听函数，
+       2、能够指定在哪一个阶段触发监听函数（捕获阶段还是冒泡阶段）
+       3、整个JavaScript统一的监听函数接口
+    */
+  </script>
+</html>

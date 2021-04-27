@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // (1) 属性描述对象：元属性
+      var des = {
+        value: 123,
+        writable: false, // 属性是否可以改变
+        enumerable: true, // 如果为false：for...in及Object.keys()会跳过该属性
+        configurable: false, // 控制属性对象的可写性
+        get: undefined,
+        set: undefined,
+      };
+
+      var obj = {
+        p: 'a',
+        $n: 5,
+        get x() {
+          return this.$n;
+        },
+        set x(value) {
+          this.$n = value;
+        },
+      };
+
+      var des = Object.getOwnPropertyDescriptor(obj, 'p');
+      console.log(des);
+
+      // (2) 将一个对象的属性及方法拷贝到另外一个对象上【类似其他语言的Mixin】
+      var extend = function (to, from) {
+        for (var property in from) {
+          if (!from.hasOwnProperty(property)) continue; //getOwnPropertyDescriptor 读不到继承对象上的属性
+          Object.defineProperty(
+            to,
+            property,
+            Object.getOwnPropertyDescriptor(from, property)
+          );
+        }
+      };
+      //
+      var obj1 = {};
+      extend(obj1, {
+        get a() {
+          return 1;
+        },
+        obj: {
+          a: 1,
+          b: function () {},
+        },
+      });
+      console.log(obj1);
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HZKVC : NSObject
-
+@property(nonatomic,copy)NSString *name;
 @end
 
 NS_ASSUME_NONNULL_END

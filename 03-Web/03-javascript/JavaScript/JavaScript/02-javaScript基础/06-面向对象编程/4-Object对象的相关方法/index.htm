@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // Object对象的相关方法，用来处理面向对象编程的相关操作
+
+      // (1) 获取参数对象的原型
+      var F = function () {};
+      var f = new F();
+      Object.getPrototypeOf(f) === F.prototype;
+      // (2) 为参数对象设置原型
+      var a = {};
+      var b = { x: 1 };
+      Object.setPrototypeOf(a, b);
+      Object.getPrototypeOf(a) === b;
+
+      // (3) 使用一个对象创建另一个对象
+      var A = {
+        print: function () {
+          console.log('hello');
+        },
+      };
+      var B = Object.create(A);
+      Object.getPrototypeOf(B) === A; // true
+      B.print();
+      //(4) 判断对象是否为参数对象的原型
+      var o1 = {};
+      var o2 = Object.create(o1);
+      var o3 = Object.create(o2);
+      o2.isPrototypeOf(o3);
+
+      
+      // （5） 对象拷贝
+      function copyObject(orig) {
+        var copy = Object.create(Object.getPrototypeOf(orig));
+        copyOwnPropertiesFrom(copy, orig);
+        return copy;
+      }
+
+      function copyOwnPropertiesFrom(target, source) {
+        Object.getOwnPropertyNames(source).forEach(function (propKey) {
+          var desc = Object.getOwnPropertyDescriptor(source, propKey);
+          Object.defineProperty(target, propKey, desc);
+        });
+        return target;
+      }
+
+
+      // ES2017 的写法
+      function copyObject(orig) {
+        return Object.create(
+          Object.getPrototypeOf(orig),
+          Object.getOwnPropertyDescriptors(orig)
+        );
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

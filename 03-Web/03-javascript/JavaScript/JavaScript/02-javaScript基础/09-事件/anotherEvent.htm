@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>其他事件汇总</title>
+    <script>
+      // (1) load 事件： 某页面或者资源加载完成（页面或者资源从缓存中加载则不会触发）
+      window.onload = function () {
+        console.log('所有资源加载完成！');
+      };
+      // (2) 浏览网页的资源有哪些：图像（image）、样式表（style）、脚本（script）、视频（video）、音频（audio）
+      // Ajax请求（XMLHttpRequest）
+
+      // (3) session历史事件
+      // (3-1):pageshow:无论页面第一次从浏览器还是缓存中加载都会触发该事件
+      window.addEventListener('pageshow', function (event) {
+        if (event.persisted) {
+          // 判断页面是否是从缓存中加载的
+        }
+        console.log('pageshow');
+      });
+      // (3-2):pagehide事件;当用户使用前进或者后退按钮，离开当前页面时触发
+
+      // （4） 网页的状态事件
+      // (4-1):DOMContentLoaded事件:网页下载并解析完成以后，（外部资源还没有下载结束）
+      document.addEventListener('DOMContentLoaded', function (event) {
+        console.log('DOM生成！！'); // js脚本是同步的，如果脚本发生堵塞会延迟该事件的执行
+      });
+      // (4-2):
+    </script>
+  </head>
+  <body></body>
+</html>

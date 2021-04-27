@@ -1,0 +1,145 @@
+body {
+  width: 100%;
+  min-width: 320px;
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: #ccc;
+  font-size: 14px;
+  font-family: -apple-system, Helvetica, sans-serif;
+  line-height: 1.5;
+  color: #666;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #333;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+header {
+  height: 180px;
+  background: url(https://pic.c-ctrip.com/platform/h5/home/baodi2@v7.15.jpg)
+    no-repeat;
+  background-size: 100%;
+}
+
+.search-wrap {
+  display: flex;
+  height: 44px;
+}
+.search-left {
+  position: relative;
+  flex: 1;
+  align-self: center;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 2px;
+  margin-left: 12px;
+  margin-right: 4px;
+  border-radius: 14px;
+  background-color: #fff;
+}
+
+.search-left span {
+  padding-left: 35px;
+}
+
+.search-left span::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 35px;
+  height: 100%;
+  content: '';
+  background: url(https://pic.c-ctrip.com/platform/h5/home/home-common-sprite2x@v7.15.png)
+    15px 7px no-repeat;
+  background-size: 21px auto;
+}
+
+.search-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 51px;
+  height: 44px;
+}
+
+.search-right a::before {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 22px;
+  background: url(https://pic.c-ctrip.com/platform/h5/home/home-common-sprite2x@v7.15.png)
+    1px -36px no-repeat;
+  background-size: 21px auto;
+  margin-bottom: 1px;
+}
+.search-right span {
+  font-size: 12px;
+  color: #fff;
+  line-height: 1;
+}
+
+/* 本地导航 */
+.local-nav {
+  display: flex;
+  height: 64px;
+  border-radius: 5px;
+  background-color: #fff;
+  margin: -51px 12px 8px;
+}
+
+.local-nav li {
+  flex: 1;
+}
+
+.local-nav li a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.local-nav li a span[class^='icon'] {
+  width: 40px;
+  height: 40px;
+  background-image: url(https://pic.c-ctrip.com/platform/h5/home/home-fivemain-sprite2x@v7.15.png);
+  background-repeat: no-repeat;
+  background-size: 40px auto;
+  display: block;
+}
+
+.local-nav li a span {
+  line-height: 1;
+}
+
+.local-nav li .icon-local-scenic {
+  background-position: 0 0;
+}
+
+/* nav */
+nav {
+  overflow: hidden;
+  margin: 2px 12px;
+  border-radius: 8px;
+}
+
+.nav-common {
+  height: 88px;
+  background-color: pink;
+}
+
+.nav-common:nth-child(2) {
+  margin: 2px 0;
+}

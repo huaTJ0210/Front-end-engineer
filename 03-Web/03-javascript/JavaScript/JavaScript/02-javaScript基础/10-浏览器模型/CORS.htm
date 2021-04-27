@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS通讯</title>
+    <script>
+        //(1) CORS（corss-origin-resource-sharing）:跨域资源共享，需要服务端配合（浏览器已支持，发送请求与普通的ajax请求一样）
+        //(2) 两种请求
+        /*
+          （2-1）：简单请求【需要满足以下条件】
+          + http method ： head、get、post
+          + http request header ： Accept、Accept-language、Content-language、Last-Event-ID、Content-Type：application/x-www-form-urlencod
+          multipart/form-data 、 text/plain
+          + 浏览器发送简单的跨域ajax请求就是在http的请求头部增加origin字段，标注请求来源；服务器会判断该值是否在许可的范围内部；
+          如果允许则在服务器响应信息的头部多返回以下信息：
+            Access-Control-Allow-Origin: http://api.bob.com
+            Access-Control-Allow-Credentials: true
+            Access-Control-Expose-Headers: FooBar
+            Content-Type: text/html; charset=utf-8
+        */ 
+        /*
+         (2-2)非简单请求：
+          + 非简单的CORS请求会进行一次HTTP查询请求又称之为“预检”请求（preflight）
+          + 
+        */
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

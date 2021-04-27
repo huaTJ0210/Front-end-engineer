@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--（1）模板渲染-->
+    <div id="app">
+    <p>{{message}}</p>
+    <p>{{tip}}</p>
+    <span v-bind:title='tip'>使用v-bind绑定标签的属性</span>
+    </div>
+   <!--（2）条件渲染-->
+
+    <div id="app-3">
+        <p v-if='seen'>v-if的条件渲染</p>
+    </div>
+
+<!--（3）列表的渲染-->
+
+    <div id="app-4">
+        <p>v-for:列表渲染</p>
+        <ul>
+            <li v-for='todo in todos' key='todo'>{{todo.text}}</li>
+        </ul>
+    </div>
+
+<!--（4）与应用进行交互，绑定处理事件;获取用户的输入-->
+    <div id="app-5">
+        <p>与应用进行交互</p>
+        <p>{{message}}</p>
+        <input ref='input' v-model='message'/><br>
+        <button  v-on:click='reverseMessage'>反转消息</button>
+    </div>
+    <!--（5）组件化构建-->
+    <div id="app-6">
+     <ul>
+         <hua-item 
+         v-for='item in groceryList'
+         v-bind:todo='item' 
+         v-key='item.text'>{{item.text}}</hua-item>
+     </ul>
+    </div>
+    <!--（6）生命周期函数-->
+    <div id="app-7">
+     <p>{{message}}</p>
+     <button @click='click'>生命周期</button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="./index.js"></script>
+</html>

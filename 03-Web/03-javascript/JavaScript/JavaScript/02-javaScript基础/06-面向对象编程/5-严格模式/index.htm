@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      'use strict'; // 开启严格模式
+      // (1) A脚本是严格模式，B脚本不是严格模式,在合并的时候先后顺序会导致结果有问题
+      var obj = {};
+      Object.defineProperty(obj, 'a', {
+        value: 37,
+        writable: false,
+      });
+      obj.a = 123; // 对只读属性赋值会报错
+      // (2) 
+    </script>
+  </head>
+  <body></body>
+</html>

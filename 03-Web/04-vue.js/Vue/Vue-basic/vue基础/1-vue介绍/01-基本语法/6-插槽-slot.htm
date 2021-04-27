@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>插槽、编译作用域、插槽作用域</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <cpn></cpn> -->
+      <cpn></cpn>
+      <cpn>
+        <template v-slot:default="slotProps">
+          {{slotProps.list.join("****")}}
+        </template>
+      </cpn>
+    </div>
+    <template id="cpn">
+      <div>
+        <slot :list="list">
+          <ul>
+            <li v-for="item in list">{{item}}</li>
+          </ul>
+        </slot>
+      </div>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        components: {
+          cpn: {
+            template: '#cpn',
+            data() {
+              return {
+                list: ['javascript', 'C++', 'C#', 'java'],
+              };
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

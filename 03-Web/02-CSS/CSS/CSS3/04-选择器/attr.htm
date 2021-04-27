@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 类选择器、属性选择器、伪类选择器 权重是10 */
+        input[type="text"]{
+            /*指定属性等于text*/
+            color: red;
+        }
+        input[name^="test"]{
+            /*指定属性以test开头*/
+            color: yellow;
+        }
+        input[name$="test"]{
+            /*指定属性以test结尾*/
+            color: yellow;
+        }
+        input[name*="test"]{
+            /*指定属性包含test*/
+            color: yellow;
+        }
+
+        button[disabled] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <input name="test1"> 
+    <input name="test2"> 
+    <input name="abctest"> 
+    <input name="abctest123"> 
+    <button>按钮</button>
+    <button disabled="disabled">按钮</button>
+</body>
+</html>

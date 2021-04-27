@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>rem适配方案</title>
+    <script>
+      /*
+      (1) 让一些不能等比自适应的元素，达到当设备尺寸发生改变的时候，等比例适配当前设备
+     （2）使用媒体查询根据不同设备比例设置html的字体大小，然后页面元素使用rem做尺寸单位
+    */
+    </script>
+    <style>
+      /*
+       动态设置html标签font-size大小
+      */
+      @media screen and (min-width: 320px) {
+        html {
+          font-size: 21.33px;
+        }
+      }
+      @media screen and (min-width: 750px) {
+        html {
+          font-size: 50px; /*屏幕宽度 / 屏幕划分份数*/
+        }
+      }
+
+      div {
+        width: 2rem; /* 页面元素值（px） / font-size = 2rem */
+        height: 2rem;
+        background-color: red;
+      }
+
+      /*
+         (1) 首先选择一套标准尺寸 750px为准
+        （2） 用屏幕尺寸除以我们划分的份数 得到html里面的文字大小（不同屏幕得到的文字大小是不一样的）
+        （3） 页面元素的rem值 = 页面元素在750像素下的px值 / html里面的文字大小
+      */
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-for的基本使用</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in letters" key="item">{{item}}</li>
+      </ul>
+      <button @click="insertF">操作数组</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          letters: ['A', 'B', 'C', 'D', 'E'],
+        },
+        methods: {
+          insertF() {
+            // (1) push/pop/shift/unshift 操作都可以引发界面的响应
+            // (2) 根据数组的下标直接修改数组元素不会发生响应式的改变
+            this.letters.splice(0, 1, 'F'); // 将数组的第一个位置替换为F
+            // 或者采用Vue提供的方法
+            Vue.set(this.letters,0,'F');// 使用Vue提供的方法更新
+
+            /*
+              数组的splice方法：
+            */ 
+           // (1) 删除：
+           this.splice(0,1);//将第一个删除
+           // (2)修改：
+           this.splice(0,1,'X');// 将第一个元素修改为X
+           // (3)新增:
+           this.splice(0,0,'Y');// 在第一个元素后新增Y
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

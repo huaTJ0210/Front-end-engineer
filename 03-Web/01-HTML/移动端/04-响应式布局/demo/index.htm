@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+     (1) 响应式开发
+     + 使用媒体查询针对不同宽度的设备进行布局和样式的设置，
+     + <768px (超小屏幕-手机) 
+     小屏幕设备（平板）>=768px ~ <992px  
+     中等屏幕（桌面显示器）>=992px ~ < 1200px
+     宽屏设备（大桌面显示器）>= 1200px
+
+     (2) 响应式布局容器
+     + 
+    */
+    </script>
+    <style>
+      .container {
+        height: 150px;
+        background-color: pink;
+        margin: 0 auto;
+      }
+
+      @media screen and (max-width: 767px) {
+        .container {
+          width: 100%;
+        }
+      }
+      @media screen and (min-width: 768px) {
+        .container {
+          width: 750px;
+        }
+      }
+      @media screen and (min-width: 992px) {
+        .container {
+          width: 970px;
+        }
+      }
+
+      @media screen and (min-width: 1200px) {
+        .container {
+          width: 1170px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 响应式开发里面，首先需要一个布局容器 -->
+    <div class="container"></div>
+  </body>
+</html>

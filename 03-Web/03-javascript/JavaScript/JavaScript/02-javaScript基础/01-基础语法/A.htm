@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <script type="text/javascript">
+
+      // (1) 变量提升问题
+      var tmp = new Date();
+
+      // 函数内部作用域会销毁内部的变量:
+      function fn() {
+        // var tmp = undefined； 并且是一个函数内部变量，函数作用域结束后，会销毁
+        console.log(tmp);
+        // var tmp 存在变量的提升
+        if (false) {
+          var tmp = 'hello world';
+        }
+        tmp = 123;
+      }
+
+      fn(); // undefined
+
+      console.log(tmp);
+
+      // 数字 Number : 不区分整数和浮点数值
+      var integer = '123';
+      var integer1 = parseInt(integer); // 123
+      var integer2 = +integer; // 123
+      console.log(integer, integer1, integer2);
+
+      /*
+        （1）布尔类型：
+          false  0  ""  NaN  null undefined 都会被转为false
+         (2) null 表示一个空值；undefined表示未定义
+         (3) let const var
+        */
+
+      for (let myLetVar = 0; myLetVar < 5; myLetVar++) {
+        // let :关键字声明的是块级作用域；超出作用域后无效
+        console.log(myLetVar);
+      }
+
+      // const ： 声明一个不可变的常量
+      // var 声明的变量，只有函数有作用域
+
+      // 控制语句
+      var name = 'taoLiang';
+
+      //
+      // 分支语句
+      switch (name) {
+        case 'li':
+          {
+            //
+          }
+          break;
+        case 'wang':
+          {
+            //
+          }
+          break;
+        default: {
+          //
+        }
+      }
+
+      // 对象：
+      var obj = {
+        name: 'Carrot',
+        details: {
+          color: 'orange',
+          size: 12,
+        },
+      };
+
+      // 对象原型 和 对象原型链
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      // 定义一个对象
+      var you = Person('you', 24);
+
+      console.log(Person.prototype);
+
+      // 数组
+
+      var a = new Array();
+      a[0] = 'dog';
+      a[1] = 'cat';
+      a.length; // 2
+
+      // 遍历数组的方法
+      for (let i = 0; i < a.length; i++) {
+        console.log(a[i]);
+      }
+
+      for (let item of a) {
+        console.log(item);
+      }
+      // 并不推荐这种方式遍历数组，Array.prototype添加新属性
+      for (let i in a) {
+        console.log(i);
+      }
+      //
+      a.forEach(function (value, index, array) {
+        console.log(value);
+      });
+      //
+      // 数组直接转化为字符串
+      a.toString(); //通过
+
+      // 剩余参数
+      function avg(...args) {
+        var sum = 0;
+        for (let value of args) {
+          sum += value;
+        }
+        return sum / args.length;
+      }
+
+      // 函数隐藏局部变量
+      var a = 1;
+      var b = 2;
+      (function () {
+        var b = 3; // 此时b为局部变量
+        a += b;
+      })();
+
+      a; // 4
+      b; // 2
+
+      // 递归匿名函数
+      var charsInBody = (function counter(elm) {
+        if (elm.nodeType == 3) {
+          // 文本结点
+          return elm.nodeValue.length;
+        }
+        var count = 0;
+        for (var i = 0, child; (child = elm.childNodes[i]); i++) {
+          count += counter(child);
+        }
+        return counter;
+      })(document.body);
+
+      // 自定义对象
+      function makePerson(first, last) {
+        return {
+          first: first,
+          last: last,
+          fullName: function () {
+            return this.first + '' + this.last;
+          },
+          fullNameReverse: function () {
+            return this.last + ',' + this.first;
+          },
+        };
+      }
+
+      /*
+        Person:
+        Person.prototype : 作为Person所有实例共享的对象
+      */
+      function Person(first, last) {
+        this.first = first;
+        this.last = last;
+      }
+      // 运行时给对象添加属性或者方法
+      Person.prototype.fullName = function () {
+        return this.first + ' ' + this.last;
+      };
+
+      Person.prototype.fullNameReverse = function () {
+        return this.last + ' ' + this.first;
+      };
+
+      // 内部函数 【函数的嵌套】
+
+      function parentFunc() {
+        var a = 1;
+        function nested() {
+          var b = 3; // 局部变量外部函数无法访问到b；
+          return a + b;
+        }
+        return nested();
+      }
+
+      // 闭包 : 一个函数 与其被创建时所带作用域对象的组合；
+      // 闭包：可以保存状态
+      function makeAdder(a) {
+        // 作用域对象： obj.a
+        return function (b) {
+          // 此函数捕获了obj，因此js垃圾回收器不会将obj释放掉；
+          return a + b;
+        };
+      }
+
+      var add5 = makeAdder(5);
+      var add20 = makeAdder(20);
+
+      add5(6); // 11
+      add20(7); // 27
+    </script>
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>

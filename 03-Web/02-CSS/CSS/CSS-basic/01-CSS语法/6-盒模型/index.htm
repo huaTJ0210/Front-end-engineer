@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /*三道杠*/
+      .icon1 {
+        box-sizing: border-box;
+        width: 12px;
+        height: 10px;
+        padding: 2px 0;
+        border-top: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        background: currentColor; /*注意如果此处背景颜色属性用缩写的话，需要放到其他背景属性的前面，否则会覆盖前面的属性值（此处为background-clip）为默认值*/
+        background-clip: content-box;
+      }
+      /*双层圆点*/
+      .icon2 {
+        width: 12px;
+        height: 12px;
+        padding: 2px;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        background-color: currentColor;
+        background-clip: content-box;
+      }
+
+      /* margin */
+      .box {
+        overflow: hidden; /* 利用BFC的特性，阻止子元素与父元素margin的合并 */
+        background-color: lightblue;
+      }
+      .box > div {
+        /* 空的块级元素自身的垂直方向上发生了合并 */
+        margin: 50%;
+        background-color: red;
+      }
+
+      p {
+        /* auto的特性是，如果两侧都是auto，则两侧均分剩余宽度；
+        如果一侧margin是固定的，另一侧是auto，则这一侧auto为剩余宽度 */
+        width: 60px;
+        margin: 0 20px 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="icon1"></div>
+    <br />
+    <div class="icon2"></div>
+
+    <div class="box">
+      <div></div>
+    </div>
+
+    <p>asdf</p>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+          float(浮动)：脱离文档流，按照指定的方向发生偏移，
+        */
+        .div1 {
+            background-color: red;
+            height: 30px;
+            width: 100px;
+        }
+         .div2{
+            background-color: green;
+            float: left;
+            height: 30px;
+            width: 100px;
+        }
+         .div3{
+            background-color: yellow;
+            float: left;
+            height: 60px;
+            width: 100px;
+        }
+        /*
+          content后面增加了一个伪元素
+          将float（浮动）清除
+        */
+        .cotent:after{
+            content: "";
+            display: table;
+            clear: both; 
+        }
+         .div4{
+            background-color: blue;
+            height: 30px;
+            width: 100px;
+            /* 
+            以下方式设置margin无效：
+            margin-top: 20px;
+            clear: both; */
+        }
+
+        /*使用双尾元素清除浮动的代码*/
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: table;
+        }
+        .clearfix:after {
+            clear: both;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="cotent">
+        <div class="div1">div1</div>
+        <div class="div2">div2</div>
+        <div class="div3">div3</div>
+    </div>
+    <div class="div4">div4</div>
+    
+</body>
+</html>

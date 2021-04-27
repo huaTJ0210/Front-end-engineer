@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站</title>
+    <style>
+      * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 10px;
+            background: #f1f1f1;
+        }
+
+        .header{
+            text-align: center;
+            background-color: white;
+            padding:30px;
+        }
+
+        .top-nav{
+            overflow: hidden;
+            background-color: #333;
+        }
+        /*子元素设置padding决定父视图的height*/
+        .top-nav a{
+            float: left;
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 14px 16px;
+        }
+        .top-nav a:hover{
+            background-color: #ddd;
+            color: black;
+        }
+        .left-column{
+            float: left;
+            width: 75%;
+        }
+        .right-column{
+            float: left;
+            width: 25%;
+            padding-left: 20px;
+        }
+
+        /* 文章卡片效果 */
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+         /* 图像部分 */
+        .fakeimg {
+            background-color: #aaa;
+            width: 100%;
+            padding: 20px;
+        }
+        .main:after{
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .footer{
+            padding: 20px;
+            text-align: center;
+            background: #ddd;
+            margin-top: 20px;
+        }
+
+         /* 响应式布局 - 屏幕尺寸小于 800px 时，两列布局改为上下布局 */
+        @media screen and (max-width: 800px) {
+
+            .leftcolumn,
+            .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+
+        /* 响应式布局 -屏幕尺寸小于 400px 时，导航等布局改为上下布局 */
+        @media screen and (max-width: 400px) {
+            .topnav a {
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>我的网站</h1>
+        <p>重置浏览器大小查看效果</p>
+    </div>
+    <div class="top-nav">
+        <a href="#">链接</a>
+        <a href="#">链接</a>
+        <a href="#">链接</a>
+        <a href="#" style="float: right;">链接</a>
+    </div>
+    <div class="main">
+        <div class="left-column">
+            <div class="card">
+                <h3>文章标题</h3>
+                <p>2019年4月17</p>
+                <div class="fakeimg" style="height:200px;">图片</div>
+                <p>文本。。。。</p>
+                <p>文章内容，详情信息等等</p>
+            </div>
+            <div class="card">
+                <h3>文章标题</h3>
+                <p>2019年4月17</p>
+                <div class="fakeimg" style="height:200px;">图片</div>
+                <p>文本。。。。</p>
+                <p>文章内容，详情信息等等</p>
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="card">
+                <h3>关于我</h3>
+                <div class="fakeimg" style="height:100px;">图片</div>
+                <p>个人信息</p>
+            </div>
+            <div class="card">
+                <h3>热门文章</h3>
+                <div class="fakeimg" >图片</div>
+                <div class="fakeimg" >图片</div>
+                <div class="fakeimg" >图片</div>
+            </div>
+            <div class="card" >
+                <h3>关注我</h3>
+                <p>一些文本。。。。</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <h3>底部区域</h3>
+    </div>
+</body>
+</html>

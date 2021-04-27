@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../react/react.js"></script>
+    <script src="../react/react-dom.js"></script>
+    <script src="../react/browser.min.js"></script>
+
+    <script type="text/babel">
+
+       class Toggle extends React.component{
+           constructor(props){
+               super(props);
+               this.state = {
+                   isToggleOn:true,
+               }
+               // 有必要绑定this，不然在回调中this会被定义为undefined
+               this.click = this.click.bind(this)
+           }
+           click(){
+               this.setState(prevState=>({
+                   isToggleOn:!prevState.isToggleOn
+               }));
+           }
+           render(){
+               return(
+                   <button onClick={this.click}>
+                       {this.state.isToggleOn ?'ON':'OFF'}
+                   </button>
+               );
+           }
+       }
+
+       ReactDOM.render(
+           <Toggle/>,
+           document.getElementById('root')
+       );
+
+    </script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>

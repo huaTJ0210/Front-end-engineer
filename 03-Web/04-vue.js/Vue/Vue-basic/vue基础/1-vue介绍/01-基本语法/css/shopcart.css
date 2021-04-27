@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.shop_cart {
+  margin: 100px auto;
+  border-left: 1px #ccc solid;
+  border-top: 1px #ccc solid;
+  text-align: center;
+}
+
+.shop_cart td {
+  border-right: 1px #ccc solid;
+  border-bottom: 1px #ccc solid;
+}
+
+.shop_cart td {
+  padding: 15px 25px;
+}

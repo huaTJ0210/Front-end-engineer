@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-if</title>
+  </head>
+  <body>
+    <div id="app">
+      <span v-if="isShow">
+        <label for="userName">用户名登录</label>
+        <input type="text" id="userName" placeholder="用户名" key="userName" />
+      </span>
+      <span v-else>
+        <label for="email">邮箱登录</label>
+        <input type="text" id="email" placeholder="邮箱" key="email" />
+      </span>
+      <button @click="isShow = !isShow">切换登录的方式</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      /*
+        vue使用VDom（虚拟Dom）构建新的渲染时会尽可能的使用已创建的元素来构建新的界面；
+        这样就会导致有一些缓存留存（例如：上个例子中的input控件中存留的输入值）
+        如何解决：
+        如果标签元素不需要被vue底层进行复用，则可以设置唯一的key值
+      */
+      new Vue({
+        el: '#app',
+        data: {
+          isShow: true,
+        },
+      });
+    </script>
+  </body>
+</html>

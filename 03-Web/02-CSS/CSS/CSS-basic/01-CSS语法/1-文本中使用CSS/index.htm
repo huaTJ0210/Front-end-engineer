@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My CSS experiments</title>
+    <!--引入外部样式表-->
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body{
+        font-size: 16px;
+      }
+      div {
+        /* font-family: 'Times New Roman', Times, serif;
+        font-size: 16px;  字体大小
+        font-weight: 700; 字体粗细
+        font-style: italic; */
+        /*复合属性*/
+        /*font-style font-weight font-size font-family 字号和字体不能省略，否则不起作用*/
+        font: italic 700 16px 'Times New Roman', Times, serif; 
+      }
+
+      a {
+        text-decoration: none;/*取消下划线*/
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="special">Create your test HTML here</p>
+    <div>一心一意书写代码</div>
+  </body>
+</html>

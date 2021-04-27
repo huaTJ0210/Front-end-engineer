@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS文本和字体</title>
+    <style>
+        body{
+            color: red;
+        }
+        h1{
+            color:#00ff00;
+        }
+        p.ex{
+            color: rgb(0, 0, 255);
+            white-space: nowrap; /*禁止换行*/
+        }
+
+        a{
+            text-decoration: none; /*去除链接的下划线*/
+        }
+
+        h1{
+            text-align: center;
+        }
+        .date{
+            text-align: right;
+        }
+        .main{
+            text-align: justify;
+            text-indent: 20px;/*缩进首行文本*/
+            letter-spacing: 2px;/*字符与字符之间的间距*/
+            line-height: 150%;/*行与行之间的距离*/
+        }
+    </style>
+</head>
+<body>
+    <h1>标题1</h1>
+    <p>普通段落文本</p>
+    <p class="ex">这是一个类为“ex”的段落文本，这个文本是蓝色；这是一个类为“ex”的段落文本，这个文本是蓝色；这是一个类为“ex”的段落文本，这个文本是蓝色；这是一个类为“ex”的段落文本，这个文本是蓝色</p>
+    <a href="www.baidu.com">百度</a>
+    <a href="www.baidu.com">搜狐</a>
+
+    <h1>CSS text-align 实例</h1>
+    <p class="date">2015 年 3 月 14 号</p>
+    <p class="main">
+        “当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。”
+    </p>
+    <p><b>注意：</b> 重置浏览器窗口大小查看 &quot;justify&quot; 是如何工作的。</p>
+</body>
+</html>

@@ -1,0 +1,99 @@
+// 首页less导入common文件
+@import 'common';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  width: 15rem; /*body的fontsize为rem的值*/
+  margin: 0 auto;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2f2f2;
+}
+
+// 顶部搜索框
+// 页面元素rem的计算公式： 页面元素的px值 / html字体的大小
+@baseFont: 50;
+.search-content {
+  display: flex;
+  position: fixed; /*固定定位的盒子一定要有宽度*/
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15rem;
+  height: (88rem / @baseFont);
+  background-color: #ffc001;
+  // -- 分类 --
+  .classify {
+    width: (44rem / @baseFont);
+    height: (70rem / @baseFont);
+    margin: (11rem / @baseFont) (25rem / @baseFont) (7rem / @baseFont)
+      (24rem / @baseFont);
+    background: url(https://image2.suning.cn/uimg/cms/img/157199320847433454.png)
+      no-repeat;
+    // 背景缩放
+    background-size: (44rem / @baseFont) (70rem / @baseFont);
+  }
+  // -- 搜索框 --
+  .search {
+    flex: 1;
+    // 输入框
+    input {
+      outline: none;
+      font-size: (25rem / @baseFont);
+      width: 100%;
+      color: #757575;
+      border: 0;
+      height: (66rem / @baseFont);
+      border-radius: (33rem / @baseFont);
+      background-color: #fff2cc;
+      margin-top: (12rem / @baseFont);
+      padding-left: (55rem / @baseFont);
+    }
+  }
+  // -- 登录框 --
+  .login {
+    width: (75rem / @baseFont);
+    height: (70rem / @baseFont);
+    line-height: (70rem / @baseFont);
+    margin: (10rem / @baseFont);
+    font-size: (25rem / @baseFont);
+    text-align: center;
+    color: #fff;
+  }
+}
+
+// banner
+.banner {
+  width: (750rem / @baseFont);
+  height: (368rem / @baseFont);
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// nav
+nav {
+  width: (750rem / @baseFont);
+  text-align: center;
+  a {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: (150rem / @baseFont);
+    height: (140rem / @baseFont);
+    img {
+      width: (82rem / @baseFont);
+      height: (82rem / @baseFont);
+      margin: (10rem / @baseFont) auto 0;
+    }
+    span {
+      font-size: (25rem / @baseFont);
+      color: #333;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // (1) history:是当前窗口的浏览历史
+        // (2) 获取当前窗口访问过的所有页面地址个数
+        window.history.length;
+        // （3）history.pushState();用于在历史中添加一条记录;地址不能跨域
+        // 当前网址为：example.com/1.html ;
+        var stateObj= {foo:'bar'};
+        //pushState结果为：当前界面并不刷新，浏览器的地址栏会变成example.com/2.html，点击回退按钮返回1.html
+        history.pushState(stateObj,'page 2','2.html');
+        // （4）history.replaceState():修改history对象的当前记录
+       // （5）popstate 事件【用户点击了浏览器倒退按钮或者前进按钮或者使用脚本调用back(),forward(),go()】
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

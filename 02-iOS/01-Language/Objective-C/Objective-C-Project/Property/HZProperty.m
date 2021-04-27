@@ -8,8 +8,7 @@
 /*
  
  
-  （1）@property的三个作用：
-   + 生成实例变量 _propertyName
+  （1）@property的作用：
    + 生成setter方法
    + 生成getter方法
  
@@ -33,6 +32,8 @@
        
  
   （6）copy / strong MRC下的setter方法重写
+      + 判断传入参数与实例变量是否相等
+      + 如果不相同，则j实例变量release，传入参数retain（copy）后赋值给实例变量
  
   （7）weak的使用 （场景、实现原理）
  
@@ -67,8 +68,8 @@
     return self;
 }
 
-- (void)setName:(NSString *)name{
-    _name = name;
+- (void)setName:(NSString *)name1{
+    _name = name1;
 }
 
 -(NSString *)name{
@@ -88,9 +89,13 @@
     self.houseArray = tempArray;// self.houseArray为不可变数组
     
     //self.houseArray 指向一个可变数组，如果可变数组内容发生变化，self.houseArray也会发生变化
-    self.houseArray = [NSMutableArray arrayWithObject:@"1"];
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithObjects:@"1",@"2",@"3" ,nil];
     
-   // NSLog(@"%@",self.houseArray[2]); // 会引发崩溃,数组越界
+    self.houseArray = mutableArray; // 使用copy，由于mutableArray是可变的，所以执行了是深拷贝，houseArray将指向的是一个新内存地址；
+    // 因此mutableArray的修改将不会再影响到houseArray
+    [mutableArray removeAllObjects];
+    NSLog(@"houseArray=====>:%@",self.houseArray[2]);
+   
 }
 
 -(instancetype)initWithName:(NSString*)name address:(NSString*)address houseArray:(NSArray*)houseArray{

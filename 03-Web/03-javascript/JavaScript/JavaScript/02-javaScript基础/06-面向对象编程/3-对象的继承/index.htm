@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // (1) 构造函数的缺点：浪费系统资源（同一个构造函数的多个实例之间无法共享属性，从而造成对系统资源的浪费）
+      function Cat(name, color) {
+        this.name = name;
+        this.color = color;
+        this.meow = function () {
+          console.log('喵喵');
+        };
+      }
+
+      var cat1 = new Cat('大毛', '白色');
+      var cat2 = new Cat('二毛', '黑色');
+
+      cat1.meow === cat2.meow; // false ：
+
+      // (2) 原型对象：定义所有实例对象共享的属性和方法，实例对象是从原型对象上衍生出来的子对象
+      // prototype：每个函数都有该属性，对于构造函数来说，生成实例的时候，该属性会自动成为实例对象的原型
+      Cat.prototype.color = 'white';
+
+      cat1.color; // white
+      cat2.color; // white
+
+      // (3) 原型链：所有对象都有自己的原型，这样从实例对象到原型，再到原型的原型 就形成了原型链
+      //  stu -> Student.prototype -> Object.prototype -> null
+
+      // (4) constructor属性的作用是，可以得知某个实例对象，到底是哪一个构造函数产生的；
+      // constructor属性表示原型对象与构造函数之间的关联关系；
+
+      // (5) instanceof: 返回一个布尔值，表示对象是否为某个构造函数的实例
+      /*
+      v instanceof Vehicle;
+      // 等同于
+      Vehicle.prototype.isPrototypeOf(v);
+      */
+      // 由于instanceof 检查整个原型链，因此同一个实例对象，可能会对多个构造函数都返回true
+      var d = new Date();
+      d instanceof Date; // true
+      d instanceof Object; // true
+
+      // (5-1) instanceof判断失真的情况: instanceof 只能用于对象，不能用于原始类型的值
+      var obj = Object.create(null);
+      typeof obj; // "object"
+      obj instanceof Object; // false
+
+      // (6) 构造函数的继承
+       
+      function Shape(){
+        this.x = 0;
+        this.y = 0;
+      }
+      Shape.prototype.move = function(x,y){
+        this.x += x;
+        this.y += y;
+        console.info('Shape moved');
+      }
+      // 子类继承父类的实例
+      function Rectangle(){
+        // (1)调用父类的构造函数
+        Shape.call(this);
+      }
+      Rectangle.prototype = Object.create(Shape.prototype);
+      Rectangle.prototype.constructor = Rectangle;
+
+      // (6 - 1) 实现JavaScript的多重继承（Mixin：混入技术）
+      function M1() {
+        this.hello = hello;
+      }
+      function M2() {
+        this.world = world;
+      }
+
+      function S() {
+        // 1 调用父类的构造函数
+        M1.call(this);
+        M2.call(this);
+        // 2 继承链上加上M1
+        S.prototype = Object.create(M1.prototype);
+        // 3 继承链上加上M2
+        Object.assign(S.prototype, M2.prototype);
+        // 4 指定构造函数
+
+        S.prototype.constructor = S;
+      }
+
+      // (7) 封装私有变量: 使用立即执行函数能将相关属性和方法封装在一个函数作用域里面，达到不暴露私有成员的目的；
+      var module = (function () {
+        var _count = 0;
+        function m1() {}
+        function m2() {}
+        return {
+          m1: m1,
+          m2: m2,
+        };
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

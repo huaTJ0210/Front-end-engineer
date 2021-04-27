@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // (1) 建议使用字面量生成新数组
+      var arr = [1, 2];
+      Array.isArray(arr); // true
+      // (2)数组的实例方法
+
+      // 2.1 ： push() & pop() 构成了“后进先出”的栈结构（stack）
+      var arr1 = [];
+      var a = arr1.push(1); // a的值是push后数组的长度:1
+      a = arr1.push(2); //  a : 2
+      var b = arr1.pop(); // b的值是数组末尾的值
+      // 2.2 ： shift() & unshit() ：  push()和shift()就构成了先进先出的队列结构
+      var arr2 = ['a', 'b', 'c'];
+      var x = arr2.shift(); // 数组头部删除元素 【shift：移位】
+      var y = arr2.unshift('x'); // 数组头部插入元素
+      // 2.3 ： join()
+      Array.prototype.join.call('hello', '-'); // h-e-l-l-o
+      // 2.4 : map() 接收一个函数作为参数；返回一个新数组
+      var numbers = [1, 2, 3];
+      var newNumbers = numbers.map(function (item) {
+        return item + 1;
+      });
+      // 2.5 : forEach()参数也是接收一个函数，但没有返回值
+      // 2.6 : reduce()
+      function findLongest(entries) {
+        return entries.reduce(function (longest, entry) {
+          return entry.length > longest.length ? entry : longest;
+        }, '');
+      }
+
+      findLongest(['aaa', 'bb', 'c']); // "aaa"
+    </script>
+  </head>
+  <body></body>
+</html>

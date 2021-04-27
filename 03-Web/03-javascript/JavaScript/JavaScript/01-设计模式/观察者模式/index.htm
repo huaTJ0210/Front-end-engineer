@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>观察者模式</title>
+
+    <script>
+
+        function asyncAdd(a,b,callBack){
+             setTimeout(function(){
+                 callBack(null,a+b);
+             },1000);
+        }
+
+         async function sum(...rest){
+             let result = 0
+            // 隐氏类型转换， 对象 + 数字，会先调用对象的toString 方法
+            const obj = {}
+            obj.toString = function() {
+                return result
+            }
+            const promises = []
+            for(let num of rest) {
+                promises.push(new Promise((resolve) => {
+                    asyncAdd(obj, num, (_, res) => {
+                        resolve(res)
+                    })   
+                }).then(res => {
+                    // 在这里将 result的值改变之后，obj.toString 的返回值就变了，这时候下一个setTimeout调用时就使用了新值
+                    console.log(res);
+                    result = res
+                }))
+            }
+            await Promise.all(promises)
+            return result
+
+          }
+
+        let start = window.performance.now();
+        sum(1,2,3,4,5,6).then(res=>{
+            console.log(res);
+            console.log(`程序执行耗时：${window.performance.now()-start}`)
+        })
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

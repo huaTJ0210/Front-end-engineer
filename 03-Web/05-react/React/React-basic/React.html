@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./react/react.js"></script>
+    <script src="./react/react-dom.js"></script>
+    <script src="./react/browser.min.js"></script>
+    <title>Document</title>
+</head>
+
+<script type="text/babel">
+    // text/babel => React使用特有的JSX语法，babel是一种'解析器'
+    // JSX：HTML可以直接写在JavaScript中，不加任何引号。
+
+    // 1 ReactDOM.render()
+
+    ReactDOM.render(
+        <h1>Hello,React</h1>,
+        document.getElementById('firstNode')
+    );
+
+    // 2 JSX语法
+    const name = ['zhao','qian','sun','li'];
+    ReactDOM.render(
+        <div>
+            {
+                name.map(function (name) {
+                    return <div>Hell0,{name}!</div>
+                })
+            }
+        </div>,
+        document.getElementById('secondNode')
+    );
+    // React允许在模板中插入JavaScript的变量
+    const divs = [
+        <h1>Hello,world!</h1>,
+        <h2>React is awesome!</h2>,
+    ];
+    ReactDOM.render(
+        <div>{divs}</div>,
+        document.getElementById('thirdNode')
+    );
+
+    // 3 组件：React允许将代码封装为一个组件，然后像插入普通HTML标签一样，在网页中插入这个组件
+    // React.createClass生成一个组件类（component）
+    // 组件的第一个字母要大写
+    // 组件只能包含一个顶层标签，否则会报错
+    // 可以使用this.props对象来获取组件自定的属性值
+    // class --> className  for-->htmlFor
+    const HelloMessage = React.createClass({
+        render:function () {
+            return <h1>Hello {this.props.name}</h1>;
+        }
+    });
+
+    ReactDOM.render(
+        <HelloMessage name="KOBE"/>,
+        document.getElementById('fourthNode')
+    );
+
+    // 4 this.props.children属性 它表示组件的所有子节点，它获取的值分三种情况{1，undefined，2，object,3,array}
+    // React.Children.map 遍历控件的子节点,可以不必判断this.props.children的数据类型
+    var NotesList = React.createClass({
+        render:function(){
+            return (
+                <ol>
+                    {
+                    React.Children.map(this.props.children,function (child) {
+                        return <li>{child}</li>
+                    })
+                }
+                </ol>
+            );
+        }
+    });
+    ReactDOM.render(
+        <NotesList>
+            <span>hello</span>
+            <span>world</span>
+        </NotesList>,
+        document.getElementById('fifthNode')
+    );
+
+    // 5 验证组件使用者传入的属性值的数据类型是否符合要求
+    // PropTypes:验证传入属性值的类型，
+    // getDefaultProps： 设置默认属性的值
+    var MyTitle = React.createClass({
+        getDefaultProps:function(){
+            return {
+                title:'Hello World'
+            };
+        },
+        propTypes:{
+            title:React.PropTypes.string.isRequired,
+        },
+        render:function () {
+            return <h1>{this.props.title}</h1>;
+        }
+    });
+
+    ReactDOM.render(
+        <MyTitle title="hello jsx"></MyTitle>,
+        document.getElementById('sixthNode')
+    );
+
+    // 6 获取真实的DOM节点 ref属性
+    // this.refs.[refName]获取到真实的Dom节点
+
+    const MyComponent = React.createClass({
+        handleClick:function(){
+           this.refs.inputText.focus();
+        },
+        render:function () {
+            return (
+                <div>
+                    <input type="text" ref="inputText"/>
+                    <input type="button" value="onclick textFiled focus" onClick={this.handleClick}/>
+                </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+        <MyComponent></MyComponent>,
+        document.getElementById('seventhNode')
+    );
+
+    // 7  this.state
+    // React 将组件看成一个状态机，一开始有个初始化状态，和用户交互后，状态发生改变，会触发UI重新渲染
+
+   const LikeButton = React.createClass({
+       getInitialState:function () {
+           return {
+               liked: false
+           }
+       },
+       handleClick:function(){
+           this.setState({
+               liked:!this.state.liked,
+           });
+       },
+       render:function () {
+           const text = this.state.liked?'liked':'have not like';
+           return (
+               <p onClick={this.handleClick}>
+                  you {text}!
+               </p>
+           );
+       }
+   });
+
+   ReactDOM.render(
+       <LikeButton/>,
+       document.getElementById('eighthNode')
+   );
+
+   // 8 表单内容的获取
+    const MyInput = React.createClass({
+        getInitialState:function(){
+            return {
+                text:'hello text'
+            };
+        },
+        handleInputChange:function(event){
+           this.setState({
+               text:event.target.value
+           });
+        },
+        render:function () {
+            const text = this.state.text;
+            return(
+                <div>
+                    <input type="text" value={text} onChange={this.handleInputChange}/>
+                    <p>{text}</p>
+                </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+        <MyInput/>,
+        document.getElementById('ninthNode')
+    );
+
+    // 9 组件的生命周期
+
+    /*
+    *  (1) Mounting : 已插入真实DOM
+    *  (2) Updating : 正在被重新渲染
+    *  (3) Unmounting:已移除真实DOM
+    * */
+
+    const MyHello = React.createClass({
+        getInitialState:function(){
+            return {
+                opacity:1.0
+            }
+        },
+        componentDidMount:function(){
+            this.timer = setInterval(function () {
+                var opacity = this.state.opacity;
+                opacity -= 0.05;
+                if (opacity < 0.1) {
+                    opacity = 1.0;
+                }
+                this.setState({
+                    opacity:opacity
+                });
+
+            }.bind(this),100)
+        },
+        render:function () {
+            return (
+                <div style={{opacity: this.state.opacity}}>
+                    hello {this.props.name}
+                </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+        <MyHello name="John"/>,
+        document.getElementById('tenthNode')
+    );
+
+</script>
+<body>
+    <div id="firstNode"></div>
+    <div id="secondNode"></div>
+    <div id="thirdNode"></div>
+    <div id="fourthNode"></div>
+    <div id="fifthNode"></div>
+    <div id="sixthNode"></div>
+    <div id="seventhNode"></div>
+    <div id="eighthNode"></div>
+    <div id="ninthNode"></div>
+    <div id="tenthNode"></div>
+
+</body>
+</html>

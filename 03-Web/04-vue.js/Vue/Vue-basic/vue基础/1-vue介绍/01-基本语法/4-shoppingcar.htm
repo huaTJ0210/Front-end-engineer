@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/shopcart.css" />
+  </head>
+  <body>
+    <div id="app">
+      <table class="shop_cart" cellspacing="0">
+        <thead>
+          <tr>
+            <td></td>
+            <td>书籍名称</td>
+            <td>出版日期</td>
+            <td>价格</td>
+            <td>购买数量</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(book,index) in books" key="book.id">
+            <td>{{book.id}}</td>
+            <td>{{book.name}}</td>
+            <td>{{book.date}}</td>
+            <td>{{book.price | showPrice}}</td>
+            <td>
+              <button
+                @click="decreaseCount(index)"
+                :disabled="book.count <1"
+              >
+                -</button
+              >{{book.count}}<button @click="increaseCount(index)">+</button>
+            </td>
+            <td><buton @click="remove(index)">移除</buton></td>
+          </tr>
+          <tr>
+            <td colspan="6" style="text-align: left">
+              总价格：{{totalPrice | showPrice}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      // (1) 定义数据源
+      new Vue({
+        el: '#app',
+        data: {
+          books: [
+            {
+              id: '1',
+              name: '《算法导论》',
+              date: '2006-9',
+              price: 85.0,
+              count: 1,
+            },
+            {
+              id: '2',
+              name: '《UNIX编程艺术》',
+              date: '2006-2',
+              price: 59.0,
+              count: 1,
+            },
+            {
+              id: '3',
+              name: '《编程珠玑》',
+              date: '2008-10',
+              price: 39.0,
+              count: 1,
+            },
+            {
+              id: '4',
+              name: '《代码大全》',
+              date: '2006-3',
+              price: 128.0,
+              count: 1,
+            },
+          ],
+        },
+        methods: {
+          decreaseCount(index) {
+            let book = this.books[index];
+            if (book.count > 1) {
+              book.count--;
+              this.books.splice(index, 1, book);
+            }
+          },
+          increaseCount(index) {
+            let book = this.books[index];
+            book.count++;
+            this.books.splice(index, 1, book);
+          },
+          remove(index) {
+            this.books.splice(index, 1);
+          },
+        },
+        computed: {
+          totalPrice: function () {
+            return this.books.reduce(function (sum, y) {
+              return (sum += y.price * y.count);
+            }, 0);
+          },
+        },
+        /*过滤器*/
+        filters: {
+          showPrice(price) {
+            return '￥' + price.toFixed(2);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

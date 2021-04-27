@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>设置子元素沿着主轴的排列方式</title>
+    <style>
+      div {
+        display: flex;
+        width: 800px;
+        height: 300px;
+        background-color: pink;
+        /*设置布局的主轴方向*/
+        flex-direction: row;
+        /* 设置子元素沿着主轴的排列方式: 
+         + space-evenly:所有的间隔都相等
+         + space-between: 先两边贴边，再平分剩余空间
+         + space-around :  平分剩余空间：相当于给每个盒子一个左右margin
+         + center : 子盒子水平居中，没有间隔，左右距离父盒子的间隔平分剩余空间
+          */
+        justify-content: center;
+      }
+
+      div span {
+        width: 150px;
+        height: 100px;
+        background-color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span>11</span>
+      <span>21</span>
+      <span>31</span>
+      <span>41</span>
+    </div>
+  </body>
+</html>

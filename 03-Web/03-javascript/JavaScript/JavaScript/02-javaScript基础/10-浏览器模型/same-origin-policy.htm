@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+          (1) 同源策略：
+           + 浏览器安全的基石；协议、域名、端口号（浏览器没有遵循）相同，限制不同网站cookie不共享
+           + 非同源下：cookie、localstorage、indexedDB，非同源的DOM、ajax请求是无法操作的
+        */ 
+
+          // (2) 跨窗口通讯问题[不同源的情况]
+          //（2-1） 片段识别符:URL的#号后面的部分：http://example.com/x.html#fragment
+
+          // 父窗体发送消息（仅改变片段标识符不会导致页面的刷新）
+          var src = originURL + '#' + data;
+          document.getElementById('myIFrame').src = src;
+          // 子窗体中接收信息
+          window.addEventListener('hashchange',function(){
+              var message = window.location.hash;
+          })
+          // (2-2) window.postMessage():跨文档的通讯API
+          // (2-3) 通过window.postMessage()可以操作其他窗体的localStorage
+
+          //(3) 不同源的情况AJAX规避限制
+          // (3-1) JSONP： 使用<script src='http://api.foo.com?callback=foo'> 向服务器请求一个脚本；
+          // 服务器将返回的信息以字符串的形式：foo({...})返回，则网页端就能作为脚本执行（前提是网页端实现了foo函数）
+          // 作为函数参数返回的JSON数据被视为JavaScript对象
+          function addScriptTag(src){
+              var script = document.createElement('script');
+              script.setAttribute('type','text/javascript');
+              script.src = src;
+              document.body.appendChild(script);
+          }
+          window.onload = function(){
+              addScriptTag('http://example.com/ip?callback=foo');
+          };
+          function foo(data){
+              console.log('Your public IP address is:' + data.ip);
+          }
+          // (3-2) : websocket：请求头部信息里面存在origin字段：服务器可以根据此字段判断是否许可此次通讯；
+          // (3-3) : CORS: 跨源资源分享
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

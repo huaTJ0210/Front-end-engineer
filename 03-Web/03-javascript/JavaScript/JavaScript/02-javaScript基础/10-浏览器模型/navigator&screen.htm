@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navigator&screen对象简介</title>
+    <script>
+     /********************1.navigator*********************/
+     // (1)浏览器厂商和版本信息:userAgent
+     var userAgent = navigator.userAgent; 
+     var platform = navigator.platform;// 判断当前的操作系统
+     console.log(userAgent);
+     // (2)  online监听用户是否在线（局域网部分浏览器也返回true）
+     window.addEventListener('online',function(e){
+         console.log('online');
+     });
+     window.addEventListener('offline',function(e){
+         console.log('offline');
+     });
+     // (3) 地理位置信息[必须在https下才能获取到信息]
+     var geoLocation = navigator.geolocation;
+     var currentLocation = geoLocation.getCurrentPosition();
+
+     /********************2.screen*********************/
+     // 当前窗口所在的屏幕，提供显示设备的信息
+     var height = screen.height;
+     var width = screen.width;
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

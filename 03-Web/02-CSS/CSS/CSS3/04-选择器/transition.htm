@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 2D转换 */
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        /* 水平移动100px；垂直移动100px : translate不会影响其他盒子的位置 */
+        transform: translate(100px,100px);
+      }
+
+      p{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 200px;
+        background-color: purple;
+        transform: translate(-50%,-50%);
+        transform-origin: left top; /*设置2d的旋转中心点*/
+      }
+
+      .rotate {
+         width: 200px;
+         height: 200px;
+         background-color: red;
+         transition: all 0.2;
+      }
+
+      .rotate:hover {
+        transform: rotate(45deg);/*顺时针旋转45度*/
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div></div>
+
+    <p>123</p>
+
+    <p class="rotate"></p>
+  </body>
+</html>

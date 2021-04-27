@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* (1)轮廓线 去掉 */
+      input {
+        outline: none;
+      }
+      /* (2) 防止拖拽文本域*/
+      textarea {
+        width: 200px;
+        height: 200px;
+        outline: none;
+        border: 1px solid #036;
+        resize: none; /*防止用户拖拽文本域*/
+      }
+      /*(3) vertical-align 垂直对齐 ： 只针对行内元素或者行内块元素有效:图片和文字来对齐*/
+      .one {
+        /* vertical-align: baseline;基线对齐 */
+        /* vertical-align: middle; 垂直居中对齐 */
+      }
+      /*
+      (4) 图片底部留白【图片和基线对齐】
+        因此修改vertical-align: baseline;为其他任何一种即可
+      */
+
+      /*(5)溢出文字省略号：*/
+      .text {
+        /* 强制文字一行内显示 */
+        white-space: nowrap;
+        /*溢出的部分隐藏*/
+        overflow: hidden;
+        /* 溢出的部分采用省略号*/
+        text-overflow: ellipsis;
+        
+      }
+
+      /*(6) CSS的精灵技术 ： 减少服务器的请求次数 ： 使用background-position 调整图片的位置*/
+     
+      /*(7)滑动门： 为了适应不同的显示文字个数*/
+
+      /*
+        (8) 单元格排列边框重合导致边框变粗
+        + 设置margin-left： -1px
+        + 设置margin-top：-1px
+      */
+
+ 
+
+      div1 {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        /* 元素的显示与隐藏 */
+
+        /* （1）display 隐藏之后不再保留位置 ： 下拉菜单比较常用 */
+        display: none; /*显示的时候设置：display：block*/
+        /* （2）隐藏后保留位置 ： 使用动画隐藏显示进行切换 */
+        visibility: visible; /*隐藏hidden*/
+        /* （3） 溢出的部分隐藏掉*/
+        overflow: hidden;
+      }
+
+      .box {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        margin: auto;
+      }
+      .mask {
+        position: absolute;
+        display: none;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .image {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+
+      .box a:hover .mask {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <a href="#">
+        <div class="image"></div>
+        <div class="mask"></div>
+      </a>
+    </div>
+   <!-- 滑动门 -->
+   <!-- 1、a设置 左侧背景图
+   2、span设置右侧背景图 -->
+    <a href="#">
+      <span></span>
+    </a>
+
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>违法行为</title>
+    <style>
+    html,
+    body,
+    #app {
+      margin: 0;
+      padding: 0;
+      background-color:white;
+    }
+    .item-container{
+        margin: 0;
+        border: 0;
+    }
+    .item{
+       height:60px;
+       background-color: white;
+       box-shadow:0px 2px 10px 0px rgba(42,97,160,0.15);
+       border-radius:4px;
+       margin-top: 10px;
+       margin-left: 16px;
+       margin-right: 16px;
+       display: flex;
+       flex-direction: row;
+       align-items:center;
+       justify-content:space-between;
+    }
+    .item-left{
+       display: flex;
+       flex-direction: row;
+       align-items:center
+    }
+    .icon{
+       width: 32px;
+       height: 32px;
+       margin-left: 16px;
+       /* margin-top: 14px; */
+    }
+    .type-desc{
+        margin-left: 12px;
+        margin-right: 12px;
+       /* margin-top: 20px; */
+       font-size: 15px;
+    }
+    .arrows{
+       width: 12px;
+       height: 8px;
+       margin-right: 16px;
+       /* margin-top: 26px;  */
+    }
+    .item-detail{
+        background-color: white;
+        margin-top: -2px;
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-bottom: 16px;
+        border-radius:0px 0px 4px 4px;
+        box-shadow:0px 2px 3px 0px rgba(42,97,160,0.15);
+    }
+    .tip-title{
+       padding-top: 12px;
+       margin-left: 16px;
+       font-size: 15px;
+    }
+    .tip-detail{
+        margin-left: 16px;
+        font-size:14px;
+        color:rgba(102,102,102,1);
+        line-height:20px;
+    }
+    .sample-graph-content{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .sample-graph{
+        width:96px;
+        height:70px;
+        border-radius:4px;
+    }
+    .item-detail-top-line{
+        margin-left: 16px;
+        margin-right: 16px;
+        height: 1px;
+        background-color: rgba(247,247,248,0.9);
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="item-container" v-for="illegalAct in illegalActList" :key="illegalAct.reportCode" @click="showDetail(illegalAct.reportCode)">
+            <div class="item">
+                <div class="item-left">
+                    <img class="icon" v-bind:src="illegalAct.iconUrl" />
+                    <p class="type-desc">{{illegalAct.reportTypeDesc}}</p>
+                </div>
+                <!-- <img class="arrows" v-if="currentShowItem!=illegalAct.reportCode" src="./img/icon_arrows_down.png"/>
+                <img class="arrows" v-else src="./img/icon_arrows_up.png" /> -->
+                <img class="arrows"  v-bind:src="currentShowItem==illegalAct.reportCode ? upArrowIcon : downArrowIcon" />
+            </div>
+            <div class="item-detail" v-show="currentShowItem==illegalAct.reportCode">
+                <div class="item-detail-top-line"></div>
+                <div>
+                    <div class="tip-title">{{illegalAct.instructionTitle}}</div>
+                    <div v-for="title in illegalAct.illegalInstructions" :key="illegalAct.reportCode">
+                        <p class="tip-detail">{{title}}</p>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+</body>
+<script >
+    /*
+      获取url中的参数的值
+    */ 
+   function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+    var paramsData = getQueryVariable("data");
+    var illegalActList = JSON.parse(decodeURI(paramsData));
+
+    // var illegalActList = [
+    //         {
+    //             reportCode: '01',
+    //             reportTypeDesc:'闯红灯',
+    //             iconUrl: './icon.png',// 必填项
+    //             sampleGraph: [
+    //                 './img.png',
+    //                 './img.png',
+    //                 './img.png',
+    //             ],//示例图 目前产品要求不需要
+    //             instructionTitle:'违反交通信号灯指示的，取证材料需满足以下要求：',
+    //             illegalInstructions: [
+    //                 '（1）能清晰辨认交通信号灯指示情况；',
+    //                 '（2）能清晰辨认机动车违反交通信号灯指示的过程，反映在交通信号灯停止指示下，机动车处于行驶状态的位移；',
+    //                 '（3）有固定、醒目的参照物，准确反映机动车所在位置的显著地理特征。'
+    //             ],//违法说明
+    //         },
+    //         {
+    //         reportCode: '02',
+    //         reportTypeDesc: '高速路或城市快速路上倒车、逆行、掉头、行车道上停车',
+    //         iconUrl: './icon.png',// 必填项
+    //         instructionTitle: '在高速公路、城市快速路上倒车、逆行、穿越中央分隔带掉头或者在车行道内停车的，取证材料需满足以下要求：',
+    //         illegalInstructions: [
+    //             '（1）能清晰辨认高速公路、城市快速路的标志、标线或者中央分隔带；',
+    //             '（2）能清晰辨认机动车在高速公路、城市快速路上倒车、逆行、穿越中央分隔带掉头或者在行车道内停车的过程，反映机动车处于行驶状态的位移或处于静止状态的持续；',
+    //             '（3）有固定、醒目的参照物，准确反映机动车所在位置的显著地理特征。'
+    //         ],//违法说明
+    //     }
+    //     ]
+    
+        var app = new Vue({
+        el: '#app',
+        data: {
+            currentShowItem: '',
+            illegalActList: illegalActList,
+            upArrowIcon:'./img/icon_arrows_up.png',
+            downArrowIcon:'./img/icon_arrows_down.png'
+        },
+        methods: {
+            showDetail(code) {
+                this.currentShowItem = this.currentShowItem == code ? '' : code;
+            }
+    }
+})
+</script>
+</html>

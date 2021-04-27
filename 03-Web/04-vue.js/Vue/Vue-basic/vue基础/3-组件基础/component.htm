@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+       <button-counter title='first'></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    </div>
+</body>
+<script>
+    // 组件是可复用的Vue实例
+    Vue.component(
+        'button-counter',{
+            // data必须是一个函数：为了让创建的组件实例状态保持独立；【数据的拷贝】
+            data:function(){
+                return {
+                    count:0
+                }
+            },
+            // 通过prop向子组件传递数据
+            props:['title'],//定义组件attribute，组件通过属性进行
+            template:'<button v-on:click="count++">{{title}}You click me {{count}} times.</button>'
+        }
+    )
+
+    /*
+      监听子组件事件
+      子组件通过$emit向上抛出一个事件，由父组件通过v-on方法监听；
+      $emit('eventName',param);父组件通过$event获取到参数
+    */ 
+
+    new Vue({
+        el:'#app'
+    })
+</script>
+</html>

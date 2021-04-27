@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>移动布局基础</title>
+    <script>
+      /*
+        (1)视口：viewport，浏览器显示页面内容的屏幕区域
+        1.1 ： pc端的视口是浏览器窗口区域
+        1.2 ： 移动端有如下三个视口：
+        + 布局视口： 一般移动设备的浏览器默认设置一个布局视口，用于解决早期PC端页面在手机上显示的问题；它的默认大小是980px；
+        + 视觉视口： 用户正在看到的内容区域
+        + 理想视口：ideal viewport；需要手动添加meta视口标签；简单的理解就是设备有多宽，布局的视口就有多宽
+
+        （2）meta视口标签
+        + width: 宽度等于设备宽度（device-width）
+        + user-scalable:是否允许页面缩放
+        + initial-scale: 初始缩放比
+        
+        （3）样式统一normalize.css
+         
+        （4） 盒子模型：
+          + 传统盒子模型
+          + CSS3的盒子模型
+
+         (5) 流式布局：非固定像素布局，
+         + 通过盒子的宽度设置百分比来根据屏幕的宽度来进行伸缩，不受固定像素的限制，内容向两侧填充
+         + 为了避免无限制的扩大或者缩小，通过max-width/min-width设置最大宽度和最小宽度
+      */
+      
+    </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      /*点击高亮需要清除*/
+      -webkit-tap-highlight-color: transparent;
+      /* 移动端默认ios按钮的样式 */
+      -webkit-appearance: none;
+    }
+
+    img , a {
+      /* 禁止长按页面时的弹出菜单 */
+      -webkit-touch-callout: none;
+    }
+  </style>
+  </head>
+  <body></body>
+</html>

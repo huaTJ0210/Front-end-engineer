@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script>
+      /*
+       (1)标签语义化：
+       header: 头部标签
+       nav：导航标签
+       article：内容标签
+       section:块级标签
+       aside：侧边栏标签
+       footer：尾部标签
+
+       （2）音视频标签
+        + audio : Ogg/mp3/Wav
+        (3)video视频标签
+        + Ogg/Mp4
+     */
+    </script>
+
+    <style>
+      header, 
+      nav,
+      section
+      {
+        display: block; /*ie9 兼容*/ 
+        width: 100%;
+        height: 120px;
+        margin-top: 20px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <header>header</header>
+    <nav>nav</nav>
+    <section>
+      <!-- chrome autoplay自动禁止了音乐自动播放 -->
+      <!-- <audio src="文件地址" controls="controls" autoplay="autoplay"></audio> -->
+      <!-- 不同浏览器支持音频文件格式不同，所以需要准备2种格式 -->
+      <audio>
+        <source src="audio.mp3" type="audio/mpeg" />
+        <source src="audio.ogg" type="audio/ogg"/>
+        您的浏览器不支持audio播放
+      </audio>
+
+      <!-- 给视频加静音播放可以解决谷歌浏览器的禁止自动播放问题 -->
+      <!-- poster:加载等待时的图片 -->
+      <video src="video.mp4" muted="muted" loop="loop"></video>
+    </section>
+  </body>
+</html>

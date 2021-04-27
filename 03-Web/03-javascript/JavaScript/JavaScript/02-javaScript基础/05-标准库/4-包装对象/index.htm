@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+         (1)   Number、String、Boolean三个原生对象可以把原始类型的值变成对象
+        （2）  包装对象（wrapper）：在一定的条件下将基本类型转化为对应的对象类型
+        （3）  包装对象设计的目的：
+          3.1： “对象”这种类型可以覆盖JavaScript所有的值，保证有一个通用的数据类型；
+          3.2： 使得原始类型也有办法调用自己的方法
+         (4) 原始类型与实例对象的自动转换
+         原始类型调用包装对象的属性和方法时，会被自动创建一个临时的包装对象实例，该实例只可读
+        */
+      'abc'.length;
+
+      // (5) 包装对象上自定义方法
+      String.prototype.double = function () {
+        return this.valueOf() + this.valueOf();
+      };
+
+      'abc'.double();
+      // abcabc
+
+      Number.prototype.double = function () {
+        return this.valueOf() + this.valueOf();
+      };
+
+      (123).double(); // 246
+    </script>
+  </head>
+  <body></body>
+</html>

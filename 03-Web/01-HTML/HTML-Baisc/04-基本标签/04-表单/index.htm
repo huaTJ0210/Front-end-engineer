@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input::placeholder {
+        color: aqua;
+      }
+    </style>
+    <script>
+      function validate() {
+        var txt_name = document.getElementById('txt_name');
+        var form = document.getElementById('testform');
+
+        var inputValue = txt_name.value.trim();
+        if (inputValue.length === 0) {
+          if (txt_name.labels.length === 1) {
+            var label = document.createElement('label');
+            label.setAttribute('for', 'txt_name');
+            var btn = document.getElementById('btn');
+            form.insertBefore(label, btn);
+            label.innerHTML = '请输入姓名';
+            label.setAttribute('style', 'font-size:12px;color:red');
+          }
+        } else {
+          if (txt_name.labels.length > 1) {
+            form.removeChild(txt_name.labels[1]);
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form id="testform">
+      <label id="label" for="txt_name">姓名:</label>
+      <input
+        type="text"
+        id="txt_name"
+        placeholder="input me"
+        list="names"
+        pattern="[0-9][A-Z]{3}"
+      />
+      <datalist id="names">
+        <option value="zhang">zhang</option>
+        <option value="li">li</option>
+        <option value="wang">wang</option>
+      </datalist>
+      <input type="button" value="验证" id="btn" onclick="validate()" />
+    </form>
+    <form>
+      <input type="text" pattern="[0-9][A-Z]{3}" />
+      <input type="button" value="提交" />
+    </form>
+    <textarea
+      name="textarea"
+      id="textarea"
+      cols="3"
+      rows="3"
+      maxlength="100"
+      wrap="hard"
+    ></textarea>
+  </body>
+</html>

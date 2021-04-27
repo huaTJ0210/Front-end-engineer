@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS动画</title>
+    <style>
+
+  /*
+    CSS3动画：
+    使得元素从一种样式逐渐变化为另一种样式的效果；
+  */
+
+        div{
+            width:100px;
+            height:100px;
+            background:red;
+            position:relative;
+            animation-name:myanimation;/*@keyframes指定的动画名称*/
+            animation-duration:5s;/*持续的时间*/
+            animation-timing-function:linear;/*动画的速度曲线*/
+            animation-delay:2s;/*动画开始时间*/
+            animation-iteration-count:infinite; /*动画被播放的次数*/
+            animation-direction:alternate; /*动画是否在下一个周期逆向播放*/
+            animation-fill-mode: backwards;/*动画结束回到起始状态，如果要保持动画后的状态，使用forward*/
+            animation-play-state:running;/*规定动画是否正在运行或者暂停*/
+        }
+        /*
+          from : 动画开始的状态
+          to : 动画结束的状态
+        */
+        /* @keyframes myanimation{
+            from{
+                background: red;
+            }
+            to{
+                background:yellow
+            }
+        } */
+
+        /*
+        
+        */
+        @keyframes myanimation{
+             0%   {background:red; left:0px; top:0px;}
+            25%  {background:yellow; left:200px; top:0px;}
+            50%  {background:blue; left:200px; top:200px;}
+            75%  {background:green; left:0px; top:200px;}
+            100% {background:red; left:0px; top:0px;}
+        }
+    </style>
+
+</head>
+<body>
+    <div></div>
+</body>
+</html>

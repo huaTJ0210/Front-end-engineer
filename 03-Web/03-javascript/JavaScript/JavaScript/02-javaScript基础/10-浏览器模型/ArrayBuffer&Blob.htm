@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // (1) ArrayBuffer:表示一段二进制数据，操作内存
+      var buffer = new ArrayBuffer(8); // 表示实例对象buffer占用8个字节
+      buffer.byteLength; // 8
+      var buffer1 = buffer.slice(0); // slice表示截取
+      // （2） Blob(Binary Large Object):二进制大型数据，主要操作二进制文件
+      var htmlFragment = ['<a id="a"><b id="b">hey!</b></a>'];
+      var myBlob = new Blob(htmlFragment, { type: 'text/html' });
+
+      console.log(myBlob);
+
+      myBlob.size; // 32
+      myBlob.type; // "text/html"
+    </script>
+  </body>
+</html>

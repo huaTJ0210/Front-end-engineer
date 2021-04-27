@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="register" action="register" method="get">
+      <table
+        cellspacing="0"
+        cellpadding="20"
+        width="600"
+        align="center"
+      >
+        <caption>
+          注册页面
+        </caption>
+        <tbody>
+          <!-- 性别 -->
+          <tr>
+            <td>
+              <label>性别</label>
+            </td>
+            <td>
+              <input type="radio" name="sex" checked /><label>男</label
+              ><input type="radio" name="sex" /><label>女</label>
+            </td>
+          </tr>
+          <!-- 生日 -->
+          <tr>
+            <td>
+              <label>生日</label>
+            </td>
+            <td>
+              <select name="year">
+                <option>--请选择年--</option>
+                <option>2021</option>
+                <option>2020</option>
+                <option>2019</option>
+              </select>
+              <select name="mouth">
+                <option>--请选择月--</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+              <select name="day">
+                <option>--请选择日--</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </td>
+          </tr>
+          <!-- 所在地 -->
+          <tr>
+            <td>
+              <label>婚姻状况</label>
+            </td>
+            <td>
+              <input type="radio" name="marry" />未婚<input
+                type="radio"
+                name="marry"
+              />已婚<input type="radio" name="marry" />丧偶
+            </td>
+          </tr>
+          <!-- 学历 -->
+          <tr>
+            <td><label>学历</label></td>
+            <td><input type="text" name="education" /></td>
+          </tr>
+          <!-- 月薪 -->
+          <tr>
+            <td><label for="salary">月薪</label></td>
+            <td><input id="salary" type="text" name="salary" /></td>
+          </tr>
+          <!-- 手机号 -->
+          <tr>
+            <td><label for="phonenumber">手机号</label></td>
+            <td><input id="phonenumber" type="text" name="phonenumber" /></td>
+          </tr>
+          <!-- 昵称 -->
+          <tr>
+            <td><label for="nickname">昵称</label></td>
+            <td><input id="nickname" type="text" name="nickname" /></td>
+          </tr>
+          <!-- 喜欢的类型 -->
+          <tr>
+            <td><label>喜欢的类型</label></td>
+            <td>
+              <input type="checkbox" name="favorite" />妩媚
+              <input type="checkbox" name="favorite" />柔美
+              <input type="checkbox" name="favorite" />可爱
+              <input type="checkbox" name="favorite" />小鲜肉
+            </td>
+          </tr>
+          <tr>
+            <td><label>自我介绍</label></td>
+            <td>
+              <textarea></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" value="免费注册" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </body>
+</html>

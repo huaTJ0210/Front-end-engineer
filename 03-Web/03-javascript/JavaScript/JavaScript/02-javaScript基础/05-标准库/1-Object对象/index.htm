@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object对象</title>
+    <script>
+      [1, 2, 3, 4].forEach(function (currentValue, index, arr) {
+        
+        console.log(currentValue);
+      });
+
+      Object.prototype.print = function () {
+        console.log(this);
+      };
+      var o1 = new Object();
+      o1.print();
+
+      var num = new Number();
+      console.log(num instanceof Object);
+
+      /*
+          Object 的原型对象：Object.prototype
+          obj instanceof Object : 验证obj是否为指定的构造函数的实例
+        */
+
+      // (1) 判断变量是否为对象的函数
+      function isObejct(value) {
+        return value === Object(value);
+      }
+      console.log(isObejct('foo'));
+      /*
+        (2)Object.keys(obj),Object.getOwnPropertyNames(obj)
+         + 相同点：遍历对象的自身属性
+         + 不同点：Object.getOwnPropertyNames()可以遍历出不可枚举的属性，例如：数组的length属性
+      */
+      var obj1 = {
+        p1: 'p11',
+        p2: 'p22',
+      };
+      for (var i = 0; i < Object.keys(obj1).length; i++) {
+        var key = Object.keys(obj1)[i];
+        console.log(key + ':' + obj1[key]);
+      }
+      for (var item of Object.keys(obj1)) {
+        console.log(item);
+      }
+      for (var item in Object.keys(obj1)) {
+        console.log(item);
+      }
+      for (var item in obj1) {
+        console.log(item);
+      }
+
+      Object.keys(obj1); //
+      Object.getOwnPropertyNames(obj1); //
+
+      /*
+        (3) Object.prototype.toString方法返回对象的类型字符串
+      */
+      var type = function (o) {
+        var s = Object.prototype.toString.call(o);
+        return s.match(/\[object (.*?)\]/)[1].toLowerCase();
+      };
+      // 准确判断是何种类型
+      [
+        'Null',
+        'Undefined',
+        'Object',
+        'Array',
+        'String',
+        'Number',
+        'Boolean',
+        'Function',
+        'RegExp',
+      ].forEach(function (t) {
+        type['is' + t] = function (o) {
+          return type(o) === t.toLowerCase();
+        };
+      });
+      type.isObject({}); // true
+      type.isNumber(NaN); // true
+      type.isRegExp(/abc/); // true
+
+      // (4)Object.prototype.hasOwnProperty():判断实例对象是否具有某个属性
+      console.log('**********************************');
+      var obj2 = {
+        p: 'p1',
+      };
+      console.log(obj2.hasOwnProperty('p'));
+    </script>
+  </head>
+  <body></body>
+</html>

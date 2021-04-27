@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function func() {
+        return new Promise((resolve, reject) => {
+          reject({ error: 'h' })
+        })
+      }
+      var p = func().then(
+        (res) => {
+          console.log('sucess===>:' + res)
+          return { success: 'success' }
+        },
+        (error) => {
+          console.log('error===>:' + error)
+          return { error: 'error' }
+        }
+      )
+      p.then((res) => {
+        console.log('hua===>' + res)
+      })
+    </script>
+  </head>
+  <body></body>
+</html>

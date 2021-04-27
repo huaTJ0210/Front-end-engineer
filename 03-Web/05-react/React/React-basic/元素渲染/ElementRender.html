@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../react/react.js"></script>
+    <script src="../react/react-dom.js"></script>
+    <script src="../react/browser.min.js"></script>
+
+    <script type="text/babel">
+        // 元素的渲染
+        const ele1 = <h1>hello react</h1>
+        ReactDOM.render(
+            ele1,
+            document.getElementById('root')
+        );
+
+        // React只会更新必要的部分:React DOM 会比较元素内容先后的不同，在渲染过程中只会更新改变的部分。
+
+    </script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>

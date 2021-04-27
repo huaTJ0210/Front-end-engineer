@@ -25,6 +25,9 @@
     pro.name = @"name";
     NSLog(@"===>:%@",pro.name);
     [pro method];
+    
+    [pro test];
+    
 }
 
 

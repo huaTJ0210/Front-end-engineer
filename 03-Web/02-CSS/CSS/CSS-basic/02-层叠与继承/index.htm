@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /*(1)包含选择器: 基本选择器 使用空格分隔*/
+      .title h2 {
+        color: rebeccapurple;
+        font-size: 20px;
+      }
+      /*(2)子元素选择器 */
+      div > strong {
+        color: red;
+      }
+
+      ul > li {
+        color: red;
+      }
+
+      /*(3)交集选择器:既是又是*/
+      p.red {
+        color: red;
+      }
+      /*(4)并集选择器:用于集体的声明，使用逗号隔开 */
+      span,
+      h4 {
+        color: blue;
+      }
+
+      a:link {
+        color: red; /*未访问的链接*/
+      }
+      a:visited {
+        color: blue;
+      }
+      a:hover {
+        color: aqua;
+      }
+      a:active {
+        color: yellow; /*选定的链接*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <h2>后台选择器</h2>
+    </div>
+
+    <div>
+      <strong>1</strong>
+      <strong>2</strong>
+      <strong>3</strong>
+    </div>
+
+    <p class="red">红色</p>
+
+    <span>span</span>
+    <h4>h4</h4>
+
+    <a href="#">链接</a>
+
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </body>
+</html>

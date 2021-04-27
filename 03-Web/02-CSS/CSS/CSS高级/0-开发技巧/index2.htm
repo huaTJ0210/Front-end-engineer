@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      div1 {
+        width: 0;
+        height: 0;
+        border-top: 100px solid orange;
+        border-bottom: 100px solid red;
+        border-left: 100px solid blue;
+        border-right: 100px solid green;
+      }
+      /* 实现一个向下的三角形 */
+      p1 {
+        width: 0;
+        height: 0;
+        line-height: 0;
+        font-size: 0;
+        border-style: solid;
+        border-width: 100px;
+        border-color: red transparent transparent transparent;
+      }
+      /* 三角形的产生是根据高和宽都是0，设置边框来实现的 */
+      div {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 100px auto;
+        background-color: pink;
+      }
+
+      p {
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        margin-left: -20px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 20px;
+        border-color: transparent transparent red transparent;
+        font-size: 0;
+        line-height: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p></p>
+    </div>
+  </body>
+</html>

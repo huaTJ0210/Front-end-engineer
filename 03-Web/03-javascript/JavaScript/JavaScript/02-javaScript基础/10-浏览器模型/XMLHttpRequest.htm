@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest</title>
+    <script>
+        /*
+          (1) 使用JavaScript发起的HTTP请求被称为AJAX（Asynchronous JavaScript XML）请求；
+         （2） AJAX使用的基本步骤
+           + 创建XMLHttpRequest实例
+           + 发送HTTP请求
+           + 接收服务器传回的数据
+           + 更新网页数据
+        */
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            /*
+              （1）readyState：代表XMLHttpRequest实例的状态【0，1，2，3，4】
+            */ 
+            if(xhr.readyState===4){// 脚本发送的HTTP请求已经完成，处理服务器返回的数据
+                if(xhr.status===200){
+                    console.log(xhr.responseText);
+                }else{
+                    console.log(xhr.statusText);
+                }
+            }
+        };
+        xhr.onerror = function(e){
+            console.error(xhr.statusText);
+        };
+        xhr.open('GET','request url',true);
+        xhr.send();// POST请求时需要设置请求数据
+
+        /*
+          （5）页面卸载时需要向服务端发送一些数据；
+          问题： 监听unload或者beforeunload事件，发送ajax请求，由于是异步的可能会导致，请求发送失败；
+          解决方案：使用Navigator.sendBeacoon(serverURL,post的数据) : 
+          发送的数据时HTTP的post方法，可以跨域，类似表单提交的方式
+        */ 
+        window.addEventListener('unload',function(){
+            if(navigator.sendBeacon){
+            navigator.sendBeacon('example.com','key-vaule');
+          }
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

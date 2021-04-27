@@ -1,0 +1,52 @@
+// (1) 定义一个变量:注意变量名规范
+@color: red;
+
+body {
+  background-color: @color;
+}
+
+div {
+  background-color: @color;
+}
+
+// (2)less编译 ： Easy LESS 插件编译
+
+// (3) less嵌套 : 父元素中书子元素
+.header {
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+  a {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    /*伪类选择器*/
+    &:hover {
+      color: blue;
+    }
+  }
+}
+
+.nav {
+  width: 200px;
+  height: 100px;
+  /*伪元素选择器*/
+  &::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+// （4）less运算能力
+
+@border: 5px + 5;
+
+div {
+  width: 200px - 50;
+  height: 200px * 2;
+  background-color: pink;
+  border: @border solid red;
+}

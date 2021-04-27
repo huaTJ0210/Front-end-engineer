@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>pixel像素基础
+    </title>
+  </head>
+  <body>
+      <div>
+          <p>
+              px:CSS pixels逻辑像素，浏览器使用的抽象单位（根据不同的设备进行缩放）
+              dp pt : device independent pixels 设备无关像素
+              dpr: devicePixelRatio 设备像素缩放比
+
+              计算公式： 1px = （dpr）^2 * dp;
+              iphone5:
+               设备像素：640dp * 1136dp
+               逻辑像素：320px * 568px
+
+          </p>
+          <p>
+              DPI/PPI : 单位英寸内的像素密度
+              PPI越高，像素越高，图像越清晰
+              可视度越低，系统默认设置缩放比越大
+                         ldpi  mdpi  hdpi xhdpi
+              ppi        120    160  240   320
+              默认缩放比   0.75   1    1.5   2.0
+          </p>
+          <p>
+
+            设备分辨率：  1136*640dp ===》 √(1136^2 + 640^2) / 4 = 326ppi
+            326ppi属于retina屏幕，dpr=2
+            1px = dpr^2 * dp;
+            iphone5的屏幕为： 320 * 568 px；
+          </p>
+      </div>
+  </body>
+</html>

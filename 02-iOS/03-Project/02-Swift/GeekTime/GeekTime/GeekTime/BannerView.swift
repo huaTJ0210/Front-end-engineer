@@ -116,6 +116,15 @@ public class BannerView: UIView, UICollectionViewDataSource, UICollectionViewDel
         if isInfinite {
             let pageNumber = dataSource.numberOfBanners(self)
             if pageNumber > 1 {
+                /*
+                 实现无限轮播的机制：
+                 在UICollectionView的两端需要先添加两张图片，
+                 首端需要添加最后一张图片，
+                 尾端需要添加第一张图片，
+                 然后在中间的位置上一次添加各个图片
+                 例如：3张图片实现的数组包含索引如下：
+                 [2,0,1,2,0]
+                 */
                 if indexPath.row == 0 {
                     index = pageNumber - 1
                 }else if indexPath.row == pageNumber + 1{

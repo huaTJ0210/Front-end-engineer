@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ccc;
+}
+
+li {
+  list-style: none;
+}
+
+.w {
+  width: 980px;
+  margin: auto;
+}
+
+/* header */
+.header {
+  height: 30px;
+  padding: 15px 0px;
+}
+
+.logo {
+  float: left;
+  margin-right: 72px;
+}
+
+.logo img {
+  height: 30px;
+  width: 133px;
+}
+
+.nav {
+  float: left;
+}
+
+.nav li {
+  float: left;
+}
+
+.nav li a {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #000;
+  text-decoration: none;
+  margin: 0px 20px;
+}
+
+.nav li a:hover {
+  border-bottom: 2px solid lightskyblue;
+}
+
+.search {
+  float: left;
+  text-align: center;
+}
+
+.search input {
+  float: left;
+  width: 298px;
+  height: 30px;
+  padding-left: 20px;
+  color: #ccc;
+  font-size: 12px;
+  border: 1px solid lightblue;
+  border-right: none;
+}
+.search button {
+  float: left;
+  height: 32px;
+  width: 40px;
+  font-size: 12px;
+  background-color: lightblue;
+  color: white;
+  border: 1px solid lightblue;
+}
+
+/* banner */
+.banner {
+  height: 290px;
+  background-color: royalblue;
+}
+
+.banner .leftnav {
+  float: left;
+  height: 290px;
+  width: 130px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.banner .leftnav ul {
+  padding: 10px;
+}
+
+.banner .leftnav li {
+  height: 30px;
+  line-height: 30px;
+  color: white;
+  font-size: 12px;
+}
+
+.banner .leftnav li a {
+  float: left;
+  text-decoration: none;
+  color: white;
+}
+
+.banner .leftnav li span {
+  float: right;
+}
+
+.banner .course {
+  float: right;
+  height: 200px;
+  width: 130px;
+  background-color: pink;
+}

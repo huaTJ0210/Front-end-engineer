@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // (1) Number.prototype.toFixed() : 将一个数转化为指定位数的小数
+        (10.055).toFixed(2) // 10.05
+        (10.005).toFixed(2) // 10.01 会四舍五入
+        // (2)Number.prototype.toLocaleString() ： 对数字进行格式化
+        (123).toLocaleString('zh-Hans-CN', { style: 'currency', currency: 'CNY' })
+        // "￥123.00"
+
+        (123).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+        // "123,00 €"
+
+        (123).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+        // "$123.00"
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

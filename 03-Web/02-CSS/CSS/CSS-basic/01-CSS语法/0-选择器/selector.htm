@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+        (1)选择器：
+         + 将html标签选择出来
+
+      */
+    </script>
+    <style>
+      /*（1）标签选择器:html标签【元素】*/
+      p {
+        color: red;
+      }
+      /*(2) 类选择器:使用.定义类名 ； 多个类名使用空格分割： class="red font100"*/
+      .red {
+        color: green;
+      }
+      /*(3) id选择器：*/
+      #nav {
+        color: blue;
+      }
+      /*(4) 通配符选择器 采用（*） */
+
+      /*包含选择器：指定元素内部的多个元素*/
+      .first p {
+        color: red;
+      }
+      /*并集选择器:选择多个元素*/
+      .first,
+      #nav {
+        font-size: 16px;
+      }
+      /*后代选择器：*/
+      ul > li {
+        font-size: 20px;
+      }
+      /*伪类选择器*/
+      a:hover{
+        color: aqua;
+        text-decoration: underline;
+      }
+      input:focus{
+        background-color: blueviolet;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="first">
+      <p>包含选择器</p>
+    </div>
+    <p>段落字体显示红色</p>
+    <div class="green">将div中的字体修改为green</div>
+    <div id="nav">
+      <p>1</p>
+      <p>2</p>
+    </div>
+    <ul>
+      <li>ul中的li</li>
+    </ul>
+    <a href="www.baidu.com">百度</a>
+    <input type="text">
+  </body>
+</html>

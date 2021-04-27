@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提示工具显示箭头</title>
+    <style>
+        .tooltip{
+            margin-top: 100px;
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+        /* 显示详情的文本样式*/
+        .tooltip .tooltip-text{
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding:5px 0;
+            border-radius: 6px;
+
+            /*定位*/
+            position: absolute;
+            z-index: 1;
+            /*居左、右侧*/
+            /* top: -5px;
+            left: 105%;right:105% */
+            /*居上、居下*/
+             bottom: 150%;
+             left: 0; 
+             /* margin-left: -60px; */
+        }
+         
+         /*伪元素设置指示箭头*/
+        .tooltip .tooltip-text::after{
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+        }
+
+        /*鼠标移动上去显示详情*/
+        .tooltip:hover .tooltip-text{
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="tooltip">
+        悬停显示提示内容<span class="tooltip-text">详细信息</span>
+    </div>
+</body>
+</html>

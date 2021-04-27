@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+
+        // 获取当前日期 x天后的日期 
+      var myDate = new Date();
+      myDate.setDate(myDate.getDate() + 12);
+      console.log(myDate);
+      var year = myDate.getFullYear();
+      var month = myDate.getMonth() + 1;
+      var day = myDate.getDate();
+      console.log(year + "-" + month + "-" + day);
+    </script>
+  </head>
+  <body></body>
+</html>
