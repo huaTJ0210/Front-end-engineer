@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            isLogin: true,
+          };
+        }
+
+        render() {
+          const { isLogin } = this.state;
+          // (1) 通过if判断
+          let welcome = null;
+          if (this.state.isLogin) {
+            welcome = <h2>欢迎回来</h2>;
+          } else {
+            welcome = <h2>请先登录</h2>;
+          }
+          return (
+            <div>
+              {welcome}
+              <button
+                onClick={() => {
+                  this.setState({
+                    isLogin: !this.state.isLogin,
+                  });
+                }}
+              >
+                {isLogin ? '退出' : '请先登录'}
+              </button>
+              <hr />
+              {/*
+                 使用&&替换三元运算符，提高代码的简洁性
+              */}
+              <h2>{isLogin && '你好！React！！'}</h2>
+              <br />
+              <button onClick={() => this.vshow()}>模拟vue的v-show指令</button>
+              <h2 style={{ display: isLogin ? 'block' : 'none' }}>
+                你好v-show
+              </h2>
+            </div>
+          );
+        }
+
+        vshow() {
+          this.setState({
+            isLogin: !this.state.isLogin,
+          });
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- babel目前前端使用很广泛的编译器，可以将浏览器不支持的语法进行转化 -->
+    <script type="text/babel">
+      class Title extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            title: 'hello world',
+          };
+          /*
+            右侧在当前this上寻找changeTitle函数没有定义，则沿着原型链寻找，找到后将原型上的方法
+            绑定this后再赋值给当前实例上的changeTitle属性
+          */
+          this.changeTitle = this.changeTitle.bind(this);
+        }
+        changeTitle() {
+          /*
+              如果未绑定this，当前方法执行的是Title.prototype.changeTitle();
+              由于class内部是严格模式，this指向的运行环境会被重置为undefined；
+            */
+          console.log(this);
+          this.setState({
+            title: 'hello react!!',
+          });
+        }
+        render() {
+          return (
+            <div>
+              <h1>Hello,{this.state.title}</h1>
+              <button onClick={this.changeTitle}>改变标题</button>
+            </div>
+          );
+        }
+      }
+      /*
+        jsx:多个标签最外层（根）只能有一个标签
+      */
+
+      ReactDOM.render(<Title />, document.getElementById('root'));
+      /*
+        ReactDOM.render('jsx构建的内容(组件)','组件挂载的结点document.getElementById('root')');
+      */
+    </script>
+  </body>
+</html>

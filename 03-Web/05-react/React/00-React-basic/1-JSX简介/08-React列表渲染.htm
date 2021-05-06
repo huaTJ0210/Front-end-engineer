@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>JSX语法:创建列表</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            movies: ['星际穿越', '大话西游', '盗梦空间', '少年派'],
+            numbers: [23, 112, 45, 67, 56, 68, 89, 456, 234, 4, 5, 60],
+          };
+        }
+
+        render() {
+          const { movies, numbers } = this.state;
+          return (
+            <div>
+              <h2>电影列表</h2>
+              <ul>
+                {movies.map((item, index) => {
+                  return (
+                    <li
+                      onClick={(event) => {
+                        this.liClick(item, index, event);
+                      }}
+                    >
+                      {item}
+                    </li>
+                  );
+                })}
+              </ul>
+              <h2>数字列表(过滤)</h2>
+              <ul>
+                {numbers
+                  .filter((item) => item >= 50)
+                  .map((item) => (
+                    <li>{item}</li>
+                  ))}
+              </ul>
+              <h2>数字列表(截取)</h2>
+              <ul>
+                {numbers.slice(0, 4).map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+
+        liClick(item, index, event) {
+          console.log(item, index, event);
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

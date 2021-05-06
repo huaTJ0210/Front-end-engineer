@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+          /*
+            (1) 什么是虚拟DOM
+           + React.createElement函数最终创建出来一个ReactElement对象
+           + React利用ReactElement对象组成一个JavaScript的对象树
+           + JavaScript的对象树就是虚拟DOM（Virtual DOM）
+           + 虚拟DOM就是一个简单的JavaScript对象，UI以一种虚拟化的方式保存在内存中
+           + ReactDOM.render函数让虚拟DOM和真实DOM同步起来，这个过程叫做协调
+           （2）为什么使用虚拟DOM，不直接修改真实的DOM
+           + 很难追踪状态的改变：原有的开发方式，很难追踪到状态发生的改变，不方便针对应用程序进行调试
+           + 操作真实DOM性能比较低：传统的开发方式会进行频繁的DOM操作，而这一做法性能非常低
+           （3）频繁操作DOM的问题
+           + 
+          */
+        }
+
+        render() {
+          const reactElement = (
+            <div>
+              <div className='header'>header</div>
+              <div className='content'>内容</div>
+              <div className='footer'>底部</div>
+            </div>
+          );
+          console.log(reactElement);
+          return reactElement;
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

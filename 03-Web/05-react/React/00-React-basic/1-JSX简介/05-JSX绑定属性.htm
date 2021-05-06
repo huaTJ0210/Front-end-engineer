@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            title: '标题',
+            picURL: '../image.png',
+            active: false,
+          };
+        }
+
+        render() {
+          const { title, picURL } = this.state;
+          return (
+            <div>
+              {/*（1）绑定属性*/}
+              <h2 title={title}>我是标题</h2>
+              <img src={picURL} alt='图片' />
+
+              {/*
+                防止关键字冲突
+                <div class="box title"></div>
+              <label for=""></label>
+              */}
+              <div className='box-title'></div>
+              {/*
+                 （2）绑定class：如何根据状态给元素添加样式
+              */}
+              <div
+                className={'box title ' + (this.state.active ? 'active' : '')}
+              ></div>
+              <label htmlFor=''></label>
+              {/*
+                 （3）绑定style ：属性值要加引号，属性名称改为驼峰命名
+              */}
+              <div
+                style={{
+                  width: '100px',
+                  height: '100px',
+                  color: 'red',
+                  fontSize: '15px',
+                }}
+              >
+                123
+              </div>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            message: 'hello',
+            counter: 100,
+          };
+          this.btnClick = this.btnClick.bind(this);
+        }
+
+        render() {
+          return (
+            <div>
+              {/*
+                方案一： 绑定this的方式
+              */}
+              <button onClick={this.btnClick}>12</button>
+              {/*
+                方案二： 通过给类增加属性
+              */}
+              <button onClick={this.increment}>23</button>
+              {/*
+                方案三： 箭头函数 + 方法调用：方便后期函数传递参数
+              */}
+              <button
+                onClick={() => {
+                  this.decrement();
+                }}
+              >
+                34
+              </button>
+            </div>
+          );
+        }
+
+        btnClick() {
+          console.log(this.state.message);
+        }
+
+        /*
+           ES6中给对象增加属性，class fields
+        */
+        increment = () => {
+          console.log(this.state.counter);
+        };
+        decrement() {
+          console.log(this.state.counter);
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>
