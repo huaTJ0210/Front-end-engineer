@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      function Home() {
+        const [age, setAge] = React.useState(18);
+        const [names, setNames] = React.useState(['asc', 'cee']);
+        const [info, setInfo] = React.useState({ name: 'li', age: 20 });
+
+        return (
+          <div>
+            <h2>当前的年龄：{age}</h2>
+            <button
+              onClick={(e) => {
+                setAge(age + 1);
+              }}
+            >
+              年龄+1
+            </button>
+            <h2>朋友列表：</h2>
+            <ul>
+              {names.map((name) => {
+                return <li key={name}>{name}</li>;
+              })}
+            </ul>
+            <button
+              onClick={(e) => {
+                setNames([...names, 'cuba']);
+              }}
+            >
+              添加朋友
+            </button>
+            <button onClick={addFrinds}>添加朋友</button>
+            <h2>我的信息</h2>
+            <p>我的名字：{info.name}</p>
+            <button onClick={e=>{
+              setInfo({...info,name:'lilei'})
+            }}>修改名字</button>
+          </div>
+        );
+
+        function addFrinds() {
+          const newNames = [...names, 'wang'];
+          console.log(newNames);
+          setNames(newNames);
+        }
+      }
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+        }
+
+        render() {
+          return (
+            <div>
+              <Home />
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

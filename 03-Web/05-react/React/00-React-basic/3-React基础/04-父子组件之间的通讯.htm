@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+    /*
+    
+      (1) 父组件向子组件进行数据的传递
+       + 父组件使用 属性 = 值 的形式来传递给子组件数据
+       + 子组件通过props参数获取父组件传递过来的数据
+      (2)
+    */
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+        }
+
+        render() {
+          return (<div></div>);
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

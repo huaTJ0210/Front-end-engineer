@@ -31,6 +31,7 @@ public class Trie {
     public int getSize(){
         return size;
     }
+
     // 向Trie中添加一个新的单词word
     public void insert(String word){
         Node cur = root;

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+    <style>
+      .nav-bar {
+        display: flex;
+        height: 44px;
+        line-height: 44px;
+        text-align: center;
+      }
+
+      .nav-bar .left,
+      .nav-bar .right {
+        width: 80px;
+        background: red;
+      }
+      .nav-bar .center {
+        flex: 1;
+        background: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class NavBar extends React.Component {
+        render() {
+          const { leftSolt, centerSolt, rightSolt } = this.props;
+          return (
+            <div className='nav-bar'>
+              <div class='nav-bar left'>{leftSolt}</div>
+              <div class='nav-bar center'>{centerSolt}</div>
+              <div class='nav-bar right'>{rightSolt}</div>
+            </div>
+          );
+        }
+      }
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+        }
+
+        render() {
+          const navLeft = <div>返回</div>;
+          const navCenter = <div>购物街</div>;
+          const navRight = <div>更多</div>;
+
+          return (
+            <div>
+              <NavBar
+                leftSolt={navLeft}
+                centerSolt={navCenter}
+                rightSolt={navRight}
+              />
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

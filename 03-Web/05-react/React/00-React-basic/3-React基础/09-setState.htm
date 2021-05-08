@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            counter: 0,
+          };
+        }
+
+        render() {
+          return (
+            <div>
+              <h3>{this.state.counter}</h3>
+              <button
+                onClick={() => {
+                  this.increment();
+                }}
+              >
+                +1
+              </button>
+            </div>
+          );
+        }
+        increment() {
+          /*
+            (1) 使用setState重新更改组件的状态，是希望React根据最新state来重新渲染页面，如果直接修改
+            state的属性值，React无法进行更新操作
+            （2） React并未实现像Vue2中Object.defineProperty或者Vue3中的Proxy的方式来监听数据的变化
+            （3）所以再react中必须使用setState
+          */
+          this.setState(
+            {
+              counter: this.state.counter + 1,
+            },
+            () => {
+              console.log('更新完毕');
+            }
+          );
+          /*
+            setState:是异步操作还是同步操作？
+            （1）setState设计为异步的原因：
+            + setstate设计为异步：提高效率，避免render函数的频繁更新
+            + 避免子组件props依赖父组件的state中的属性，造成state更新后，render函数没有执行，导致props和state中的值不一致
+          
+            */ 
+          console.log(this.state.counter);
+        }
+
+        componentDidUpdate(){
+          // 获取异步更新后的结果
+          console.log(this.state.counter);
+        }
+        /*
+          setState同步更新的情况
+          （1）计时器
+          （2）DOM事件监听
+        */
+       changeCounter(){
+         setTimeout(()=>{
+           this.setState({
+             counter:this.state.counter + 1
+           });
+           // 同步更新
+           console.log(this.state.counter);
+         },0);
+       }
+
+       /*
+         (1)setstate数据合并
+         Object.assign({},preState,paritalState);
+       */
+
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

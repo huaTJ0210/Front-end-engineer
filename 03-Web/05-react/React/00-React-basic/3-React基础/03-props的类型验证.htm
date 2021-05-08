@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class ChildApp extends React.Component {
+        render() {
+          const { name, age, height } = this.props;
+          return (
+            <ul>
+              <li>{name}</li>
+              <li>{age}</li>
+              <li>{height}</li>
+            </ul>
+          );
+        }
+      }
+
+      // 组件进行类型检查 【import PropTypes from 'prop-types';】
+      // ChildApp.propTypes = {
+      //   name : PropTypes.string
+      // }
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+        }
+
+        /*
+          使用static定义类属性；
+          相当于 App.obj = {}
+        */
+
+        static obj = {
+          name: 'li',
+        };
+
+        render() {
+          return (
+            <div>
+              <ChildApp name='li' age={18} height={1.78} />
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+
+      // 组件：独立性、可复用性的模块
+      // 组件就是一个函数，接受输入值，产生的输出就是React元素
+
+      // 函数定义/类定义组件
+
+      function Welcome(props) {
+        return <h1>welcome,{props.name}</h1>;
+      }
+
+      // ES6 的class来定义一个组件
+      class WelcomePage extends React.component {
+        render() {
+          return <h1>Hello,{this.props.name}</h1>;
+        }
+      }
+
+      // props：可以理解为用户自定义组件的静态属性
+
+      // 提取组件，是将组件分为更小的组件
+
+      // Props的只读性
+
+      // 纯函数 ==》 他没有改变他的输入值，当传入的值相同，总是会返回相同的结果。
+      function sum(a, b) {
+        return a + b;
+      }
+
+      // 改变自身的输入值
+      function withdraw(account, amount) {
+        account.total -= amount;
+      }
+    </script>
+  </body>
+</html>

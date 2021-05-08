@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      /*
+      (1) 高阶函数
+      + 接收一个或者多个函数作为输入
+      + 输出一个函数
+      + JavaScript中的高阶函数：filter、map、reduce
+      (2) 高阶组件：【本质是函数】
+      + Higher-Order Component ： 简称为：HOC
+      + 高阶组件是参数为组件，返回值为新组件的函数
+      + 返回值还是组件
+     （3）高阶组件的使用场景
+     + 在不破坏组件原有结构的基础上，增加props
+     + 
+    */
+
+      // 劫持生命周期
+      function logRenderTime(WrapperCpn) {
+        return class extends React.PureComponent {
+          UNSAFE_componentWillMount() {
+            this.begin = Date.now();
+          }
+          componentDidMount() {
+            this.end = Date.now;
+            const interval = this.end - this.begin;
+            console.log(`${WrapperCpn.name}渲染使用时间：${interval}`);
+          }
+          render() {
+            return <WrapperCpn {...this.props} />;
+          }
+        };
+      }
+
+      class Home extends React.PureComponent {
+        render() {
+          return (
+            <div>
+              <h2>Home</h2>
+              <p>Home的元素</p>
+            </div>
+          );
+        }
+      }
+
+      const LogHome = logRenderTime(Home);
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+        }
+
+        render() {
+          return (
+            <div>
+              <LogHome />
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

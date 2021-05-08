@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React Hook的基本使用</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      export const UserContext = React.createContext();
+      export const ThemeContext = React.createContext();
+
+      function App() {
+        return (
+          <div>
+            <UserContext.Provider value={{ name: 'li' }}>
+              <ThemeContext.Provider value={{ color: 'red' }}>
+                <ContextHook />
+              </ThemeContext.Provider>
+            </UserContext.Provider>
+          </div>
+        );
+      }
+
+      function ContextHook() {
+        const user = React.useContext(UserContext);
+        const theme = React.useContext(ThemeContext);
+
+        return (
+          <div>
+            <h2>姓名：{user.name}</h2>
+            <h2>主题：{theme.color}</h2>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

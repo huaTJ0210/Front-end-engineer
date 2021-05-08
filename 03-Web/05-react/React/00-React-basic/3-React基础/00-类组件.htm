@@ -13,21 +13,62 @@
     <div id="app"></div>
     <script type="text/babel">
       /*
-      类组件：
+
+      1、React组件化
+       （1）将页面拆分成一个个小的，可复用的组件；
+
+      2、类组件：
          (1)组件的名称首字母必须大写
          (2)必须继承React.Component
          (3)类组件必须实现render函数
+
+       3、生命周期
+         （1）  装载阶段（Mount）: 组件第一次在DOM树中被渲染的过程
+          (2)  更新阶段（Update）：组件状态发生改变，更新渲染的过程
+         （3）  卸载阶段（Unmount）: 组件从DOM树中被移除的过程
+       4、
       */
       class App extends React.Component {
         constructor(props) {
           super(props);
-          this.state = {};
+          this.state = {
+            message: 'hello react',
+          };
+        }
+        // (1)组件已经被挂载在DOM上
+        componentDidMount() {
+          // 发送网络请求
+          console.log('componentDidMount');
+        }
+        // (2)组件发生状态更新 : new props、setState()、 forceUpdate()
+        componentDidUpdate() {
+          // 首次渲染不会调用此方法
+          console.log('componentDidUpdate');
+        }
+        // (3)组件即将被移除
+        componentWillUnmount() {
+          // 清除timer、取消网络、取消创建的订阅
+          console.log('componentWillUnmount');
+        }
+
+        btnClick() {
+          this.setState({
+            message: 'hello message 1',
+          });
         }
 
         render() {
           return (
             <div>
               <h2>类组件</h2>
+              <h2>{this.state.message}</h2>
+              <button
+                onClick={() => {
+                  this.btnClick();
+                }}
+              >
+                change
+              </button>
             </div>
           );
         }

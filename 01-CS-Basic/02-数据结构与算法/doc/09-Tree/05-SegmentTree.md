@@ -49,7 +49,7 @@
 >
 > 如果最坏的情况 n = 2^k + 1，那么需要数组的空间则是： 2n + n + n = 4n （比n = 2^k多出一层）
 
-<img src="/Users/huatianjie/Desktop/算法/hzDataStructure/doc/res/05-数组表示线段树.png" alt="05-数组表示线段树" style="zoom:30%;" />
+<img src="../res/05-什么是线段树.png" alt="05-什么是线段树" style="zoom:50%;" />
 
 #### 5、如何构建线段树
 

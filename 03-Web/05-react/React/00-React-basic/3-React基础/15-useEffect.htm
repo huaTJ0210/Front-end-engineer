@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      function CounterTitle() {
+        const [count, setCount] = React.useState(0);
+        const [show, setShow] = React.useState(true);
+
+        /*
+          如何决定useEffect何时执行和什么时候不应该执行呢？
+          useEffect实际上有两个参数
+          + 执行的回调函数
+          + 该useEffect在哪些state发生变化是，才重新执行
+        */
+        React.useEffect(() => {
+          console.log('网络请求！！');
+        }, []);
+
+        React.useEffect(() => {
+          console.log('修改Dom');
+        }, [show]);
+
+        React.useEffect(() => {
+          console.log('事件监听');
+          // DOM被移除时会回调
+          return () => {
+            console.log('取消监听');
+          };
+        });
+
+        // 通过useEffect告诉React需要再渲染以后做什么
+        React.useEffect(() => {
+          // 无论是每次渲染，还是第一更新都会执行这个函数
+          document.title = count;
+        }, [count]);
+        return (
+          <div>
+            <h2>当前计数：{count}</h2>
+            <button
+              onClick={(e) => {
+                setCount(count + 1);
+              }}
+            >
+              +1
+            </button>
+            <button
+              onClick={(e) => {
+                setCount(count - 1);
+              }}
+            >
+              -1
+            </button>
+          </div>
+        );
+      }
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+        }
+
+        render() {
+          return (
+            <div>
+              <CounterTitle />
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>
