@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>导航栏</title>
+  </head>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      list-style-type: none;
+    }
+    a {
+      text-decoration: 0;
+      color: white;
+      font-size: 14px;
+    }
+    .app-header {
+      height: 75px;
+      background-color: black;
+    }
+    .app-header .content {
+      display: flex;
+      justify-content: space-between;
+      width: 980px;
+      height: 100%;
+      margin: 0 auto;
+      background-color: pink;
+    }
+    .app-header .content .left {
+      display: flex;
+    }
+    .app-header .content .left .logo {
+      margin-left: 10px;
+      line-height: 75px;
+      background: url('./logo.png') no-repeat 0 0;
+      font-size: 0;
+    }
+    .app-header .content .left .logo a {
+      display: inline-block;
+      width: 176px;
+      height: 75px;
+      font-size: 0;
+    }
+    .app-header-nav-list {
+      display: flex;
+    }
+    .app-header-nav-list a {
+      display: inline-block;
+      line-height: 75px;
+      padding: 0 20px;
+    }
+    .app-header-nav-list a:hover {
+      background-color: green;
+    }
+    .app-header .content .right {
+      display: flex;
+      align-items: center;
+    }
+    .search {
+      padding: 5px 15px;
+      font-size: 12px;
+      background: white;
+      border-radius: 5px;
+      color: lightslategray;
+    }
+
+    .login {
+      margin: 0 20px;
+      color: white;
+      font-size: 14px;
+    }
+  </style>
+  <body>
+    <div class="app-header">
+      <div class="content">
+        <div class="left">
+          <h1 class="logo">
+            <a href="/">xxxx</a>
+          </h1>
+          <ul class="app-header-nav-list">
+            <li><a href="#">手机</a></li>
+            <li><a href="#">台式电脑</a></li>
+            <li><a href="#">笔记本</a></li>
+            <li><a href="#">显示器</a></li>
+          </ul>
+        </div>
+        <div class="right">
+          <div class="search">搜索/检查/其他</div>
+          <div class="login">登录</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

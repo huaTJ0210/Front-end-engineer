@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+       (0)HTML元素分类
+        + block元素会独占一行，默认情况下，block元素宽度自动填满其父元素宽度；
+        + inline：行内元素，一行上显示,只能修改padding和margin的左右两侧才起作用
+        + inline-block 简单来说就是使其既具有block的宽度高度特性又具有inline的同行特性。顾名思义就是在不换行但拥有块元素其他的性质。
+       
+       (1) 内联元素之间存在间距，并不是由margin、padding导致的，而是由编辑时款空字符导致
+       解决方案：
+       + 父元素中将font-size设置为0；子元素中单独设置font-size的值即可
+       + 设置浮动，可以将元素脱离当前文档流课可以消除间距
+       + 设置margin为负数
+       + 设置为块级元素
+      */
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      button {
+        border: 0;
+      }
+      .div1 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+      .div2 {
+        background-color: aqua;
+        padding: 10px 15px;
+        border-radius: 10px;
+        /* font-size: 0; */
+      }
+      button {
+        display: block;
+        /* font-size: 16px; */
+      }
+      /*行内元素：*/
+      span {
+        background-color: orange;
+        color: white;
+        padding: 20px 10px; /*左右有效果,上下没有效果*/
+        margin: 10px; /*左右有效果,上下没有效果*/
+        /* line-height: 62px; */
+      }
+    </style>
+  </head>
+  <body>
+    <div><span>123</span><span>abc</span><span>456</span><span>ABC</span></div>
+    <br />
+    <div class="div1">
+      <div class="div2"><button>2314341</button></div>
+    </div>
+  </body>
+</html>

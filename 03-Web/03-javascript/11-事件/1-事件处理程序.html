@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- （1）动态创建了一个包装函数，内部有一个局部变量-- event对象 -->
+    <input
+      type="button"
+      value="on click"
+      onclick="console.log('clicked!!'+ this.value);"
+    />
+    <!-- （2）创建事件 -->
+    <input id="button" type="button" value="button" />
+    <!-- （3）创建事件使用监听方法 -->
+    <input id="myBtn" type="button" value="my button" />
+
+    <script>
+      const button = document.getElementById('button');
+      // 以此种方式注册的事件是在事件流的冒泡阶段；
+      button.onclick = function () {
+        // this代表当前button元素
+        console.log('button onclick');
+      };
+      //使用监听方法处理事件
+      const myBtn = document.getElementById('myBtn');
+      const clickHandler = () => {
+        console.log('my btn click!!');
+      };
+      myBtn.addEventListener('click', clickHandler, false);
+      // 移除事件：只能移除和添加事件处理程序一致的事件程序
+      myBtn.removeEventListener('click', clickHandler, false);
+    </script>
+  </body>
+</html>

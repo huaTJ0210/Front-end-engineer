@@ -24,7 +24,7 @@
           const { isLogin } = this.state;
           // (1) 通过if判断
           let welcome = null;
-          if (this.state.isLogin) {
+          if (isLogin) {
             welcome = <h2>欢迎回来</h2>;
           } else {
             welcome = <h2>请先登录</h2>;

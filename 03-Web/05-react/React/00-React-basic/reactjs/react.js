@@ -496,6 +496,7 @@
       * @internal
       */
      enqueueSetState: function (publicInstance, partialState, callback, callerName) {
+       console.log('enqueueSetState---:');
        warnNoop(publicInstance, 'setState');
      }
    };

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+     （1）JavaScript引擎只是一个按照需求，执行JavaScript任意代码片段的环境；
+     （2）事件循环：
+      
+     异步如何产生的【存在现在和将来执行的代码块】==》 异步如何调度的【事件循环】==》
+
+     + 并行：
+     + 并发：
+
+     （3） 列表的滚动触发scroll事件，同时执行ajax的调用；就会出现并发的情况
+
+     （4）并发执行【2个ajax请求】：因为ajax请求响应的时间不一样，导致回调函数的调用顺序不固定；
+     */
+      // (5) 计算量大或者代码执行任务时间长可以对任务进行拆分，然后分别加到任务队列中
+      let res = [];
+      function reponse(data) {
+        // 任务拆解 
+        let chunk = data.splice(0, 1000);
+        res = res.concat(
+          chunk.map((item) => {
+            return item * 2;
+          })
+        );
+        if(data.length>0){
+          setTimeout(() => {
+            reponse(data); // 把任务加到当前事件循环的末尾
+          }, 0);
+        }
+      }
+    </script>
+  </body>
+</html>

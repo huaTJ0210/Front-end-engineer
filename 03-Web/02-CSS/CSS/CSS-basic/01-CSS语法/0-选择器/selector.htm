@@ -6,63 +6,109 @@
     <title>Document</title>
     <script>
       /*
-        (1)选择器：
-         + 将html标签选择出来
-
+        (1)选择器的作用：
+         + 将html标签选择出来，然后进行修饰
       */
     </script>
+
     <style>
       /*（1）标签选择器:html标签【元素】*/
       p {
         color: red;
+        background-color: gray;
+        font-size: 18px;
+        line-height: 40px;
       }
+
       /*(2) 类选择器:使用.定义类名 ； 多个类名使用空格分割： class="red font100"*/
-      .red {
+      .green {
         color: green;
       }
-      /*(3) id选择器：*/
+
+      /*(3) id选择器：<div id='nav'>*/
       #nav {
         color: blue;
       }
+
       /*(4) 通配符选择器 采用（*） */
 
-      /*包含选择器：指定元素内部的多个元素*/
-      .first p {
-        color: red;
+      * {
+        margin: 20px;
+        padding: 0;
       }
-      /*并集选择器:选择多个元素*/
+
+      /*(5) 包含选择器：指定元素内部的多个元素*/
+      .first p {
+        color: orange;
+      }
+      /* (6) 并集选择器:选择多个元素*/
       .first,
       #nav {
-        font-size: 16px;
-      }
-      /*后代选择器：*/
-      ul > li {
         font-size: 20px;
       }
-      /*伪类选择器*/
-      a:hover{
+
+      /*(7)后代选择器：*/
+      ul > li {
+        font-size: 20px;
+        color: green;
+      }
+
+      /*(8)伪类选择器*/
+      a {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 18px;
+        background-color: red;
+        color: white;
+        height: 40px;
+        line-height: 40px;
+      }
+      a:link {
+        color: orange;
+      }
+      a:visited {
+        color: black;
+      }
+      a:hover {
         color: aqua;
         text-decoration: underline;
       }
-      input:focus{
-        background-color: blueviolet;
+      a:active {
+        color: green;
+      }
+
+      input:focus {
+        color: red;
       }
     </style>
   </head>
   <body>
-    <div class="first">
-      <p>包含选择器</p>
-    </div>
+    <!-- 第一部分 -->
     <p>段落字体显示红色</p>
-    <div class="green">将div中的字体修改为green</div>
-    <div id="nav">
-      <p>1</p>
-      <p>2</p>
+
+    <div class="first">
+      <div>0-包含选择器</div>
+      <p>1-包含选择器</p>
+      <p>2-包含选择器</p>
     </div>
+    <hr />
+    <br />
+    <!-- 第二部分 -->
+    <div class="green">将div中的字体修改为green</div>
+
+    <div id="nav">id选择器</div>
+    <hr />
+    <br />
+    <!-- 第三部分 -->
     <ul>
-      <li>ul中的li</li>
+      <li>1</li>
+      <li>2</li>
     </ul>
+    <hr />
+    <br />
+
     <a href="www.baidu.com">百度</a>
-    <input type="text">
+    <br />
+    <input type="text" />
   </body>
 </html>

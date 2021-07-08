@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="0">
+      <div id="1">
+        <div id="1-1">1-1</div>
+        <div id="1-2">1-2</div>
+      </div>
+      <div id="2">
+        <div id="2-1">2-1</div>
+        <div id="2-2">2-2</div>
+      </div>
+    </div>
+    <script>
+      let node = document.getElementById('1');
+      let firstNode = node.childNodes[0];
+      let firstNodeChildOne = firstNode.childNodes[0];
+      let firstNodeChildSecond = firstNodeChildOne.nextSibling;
+      let secondNode = node.childNodes[1];
+    </script>
+  </body>
+</html>

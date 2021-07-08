@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        面向对象风格的模型
+      */
+      function Foo(who) {
+        this.who = who;
+      }
+      Foo.prototype.identify = function () {
+        return 'I am ' + this.name;
+      };
+
+      function Bar(who) {
+        Foo.call(this, who);
+      }
+
+      Bar.prototype.speak = function () {
+        console.log('hello' + this.identify());
+      };
+      /*
+        （1）直接 Bar.prototype = Foo.prototype;会引发什么问题？
+        + 修改Bar.prototype.name 同样会修改 Foo.prototype的属性
+        （2）Bar.prototype = new Foo()；
+        + 如果Foo函数有副作用，会影响Bar创建的对象；
+      */ 
+      Bar.prototype = Object.create(Foo.prototype);
+      Bar.prototype.constructor = Bar;
+
+      let b1 = new Bar('b1');
+      let b2 = new Bar('b2');
+
+      b1.speak();
+      b2.speak();
+    </script>
+  </body>
+</html>

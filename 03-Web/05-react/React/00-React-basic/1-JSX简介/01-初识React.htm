@@ -23,6 +23,7 @@
           */
           this.changeTitle = this.changeTitle.bind(this);
         }
+        // 在类中定义的函数，都挂载在Title.prototype上
         changeTitle() {
           /*
               如果未绑定this，当前方法执行的是Title.prototype.changeTitle();

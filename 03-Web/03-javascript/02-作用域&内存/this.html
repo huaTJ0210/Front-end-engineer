@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function foo() {
+        console.log(this.a);
+      }
+
+      // foo(1, 2, 3);
+
+      /*
+      (1)this判断的4条规则：
+      + 默认绑定： 非严格模式下绑定的是this，严格模式下会报错
+      + 隐式绑定： 调用的上下文对象
+      + 显式绑定： call apply bind
+      + new绑定 ： new函数的执行分为4曲：
+      （2）JavaScript的构造函数
+      + 一些使用new操作符调用的函数
+      + 
+   */
+
+      // bind 函数的
+      Function.prototype.bind = function (oThis) {
+        if (typeof this !== 'function') {
+          throw new TypeError(
+            'Function.prototype.bind what is trying to bound is not a function'
+          );
+        } else {
+          var aArgs = Array.prototype.slice.call(arguments, 1); // []
+          var fToBind = this; // foo
+          var fNOP = function () {};
+          var fBound = function () {
+            console.log(this); // 当前this需要看fBound的调用位置
+            console.log(oThis); // {}
+            return fToBind.apply(
+              this instanceof fNOP && oThis ? this : oThis, // 判断绑定函数是否被new关键字调用，如果调用了就返回绑定的this
+              aArgs.concat(Array.prototype.slice.call(arguments))
+            );
+          };
+          fNOP.prototype = this.prototype;
+          fBound.prototype = new fNOP();
+          return fBound;
+        }
+      };
+
+      var bindFoo = foo.bind({ a: 1 });
+      // var bar = new bindFoo();
+      // console.log(bar);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      /*
+        (1) son1,son2使用浮动，脱离当前father的文档流，导致父元素高度为2px（上下border的宽度）
+        (2) mother元素偏移
+        （3）解决（1）（2）的问题就是清除浮动
+      */
+
+      /*
+        (1) 清除浮动的方式
+        + 使用clear的属性：
+         
+        + 触发BFC：一块独立的渲染区域，规定内部block-level-box如何布局，内部子元素再怎么翻江倒海、翻云覆雨也不会影响到外部的元素
+        【BFC触发的条件】
+        + float除了none以外的值
+        + overflow除了visible以外值
+        + display ： table-cell table-caption inline-block
+        + position ： absolute
+        + 
+
+      */
+    </script>
+    <style>
+      .father {
+        width: 200px;
+        border: 1px solid #ff6633;
+        /* 
+        (2) 清除浮动方法：父级设置
+        overflow: hidden; 
+        */
+        /* 
+        (3)父级设置display；table
+        display: table; 
+        */
+        /* 
+        (4)父元素也浮动
+        float: left;
+         */
+      }
+      .son1 {
+        float: left;
+        background: blue;
+        height: 100px;
+        width: 100px;
+      }
+      .son2 {
+        float: left;
+        background: #ff0;
+        height: 50px;
+        width: 100px;
+      }
+
+      /* 
+       清除浮动（1）： 父级元素结尾设置空元素或者after等伪元素 */
+      .father::after {
+        display: block;
+        content: '';
+        clear: both; /*clear:属性是表示元素盒子的边不能跟浮动元素相邻*/
+      }
+
+      /* .mother {
+        width: 200px;
+        background-color: red;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="father">
+      <div class="son1"></div>
+      <div class="son2"></div>
+    </div>
+
+    <!-- <div class="mother">mother</div> -->
+  </body>
+</html>

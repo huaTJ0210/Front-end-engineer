@@ -7,19 +7,22 @@
     <title>Document</title>
   </head>
   <body>
-    <h2 class="title"></h2>
+    <h2 id="h2" class="title"></h2>
     <button class="btn">改变文本</button>
     <script>
       // 1 : 定义数据
       let message = 'hello world';
+      // DOM编程
       const titleEl = document.getElementsByClassName('title')[0];
+      const h2 = document.getElementById('h2');
       titleEl.innerHTML = message;
+      
       // 2 : 点击按钮数据发生改变
       const btnEl = document.getElementsByClassName('btn')[0];
       btnEl.addEventListener('click', (e) => {
         message = 'hello react';
         titleEl.innerHTML = message;
-      });
+      },false);// 事件名称、事件处理程序、是否在冒泡阶段
 
       // （1）ES5中使用构造函数创建类
       function Person(name, age) {

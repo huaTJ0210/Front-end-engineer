@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // (1) Location: 提供URL相关的信息和操作方法
+      const loc = window.location;
+      const loc1 = document.location;
+      console.log(loc === loc1);
+      /*
+         URL： http://www.baidu.com:80/user/?q=1234#content;
+          location.hash : '#content' : #字符后面跟的零个或者多个字符串标识
+        */
+      // (2) 获取URL中的查询字符串
+      let getQueryStringArgs = function () {
+        let qs = location.search.length > 0 ? location.search.substring(1) : '';
+        let args = {};
+        for (let item in qs.split('&').map((kv) => kv.split('='))) {
+          let key = decodeURIComponent(item[0]);
+          let value = decodeURIComponent(item[1]);
+          if (key.length) {
+            args[key] = value;
+          }
+        }
+        return args;
+      };
+      // (3) URLSearchParams : 构造函数接收一个查询字符串
+      let qs = '?q=javascript&num=10';
+      let searchParams = new URLSearchParams(qs);
+      console.log(searchParams.get('num'));
+      for (let param of searchParams) {
+        console.log(param);
+      }
+
+      // (4)除了hash属性外，只要修改location的一个属性，就会导致页面重新加载新的URL
+      // (5) location的若干方法
+      location.href = "http://www.baidu.com";
+      location.replace('url');// 历史记录中不会增加上一个界面
+      location.reload();// 重新加载当前页面，入参为true时表示重新从服务器端获取
+    </script>
+  </head>
+  <body></body>
+</html>

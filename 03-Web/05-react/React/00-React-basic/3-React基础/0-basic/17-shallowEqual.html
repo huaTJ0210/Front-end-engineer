@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const hasOwn = Object.prototype.hasOwnProperty;
+
+      /*
+        (1) 使用 == 的问题，会进行类型转换
+         0 == ‘’ // true
+         null == undefined // true
+         [1] == true // true
+        (2) 使用全等 === 要求必须类型一致；但也有两个问题
+        NaN === NaN // flase ；期待的是true
+        +0 === -0 // true ；期待的是false
+
+      */
+
+      // 比较基本类型的两个值是否相等
+      function is(x, y) {
+        if (x === y) {
+          return x !== 0 || y !== 0 || 1 / x === 1 / y;
+        } else {
+          // 解决NaN的问题
+          return x !== x && y !== y;
+        }
+      }
+    
+
+      export default function shallowEqual(objA, objB) {
+        // 基本类型做比较
+        if (is(objA, objB)) return true;
+
+        if (
+          typeof objA !== 'object' ||
+          objA === null ||
+          typeof objB !== 'object' ||
+          objB === null
+        ) {
+          return false;
+        }
+
+        const keysA = Object.keys(objA);
+        const keysB = Object.keys(objB);
+
+        if (keysA.length !== keysB.length) return false;
+
+        for (let i = 0; i < keysA.length; i++) {
+          if (
+            !hasOwn.call(objB, keysA[i]) ||
+            !is(objA[keysA[i]], objB[keysA[i]])
+          ) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+    </script>
+  </body>
+</html>

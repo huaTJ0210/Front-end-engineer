@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.PureComponent {
+        constructor(props) {
+          super(props);
+          this.state = {
+            friends: [
+              { name: 'lilei', age: 20 },
+              { name: 'lucy', age: 25 },
+              { name: 'lily', age: 28 },
+            ],
+          };
+        }
+
+        render() {
+          return (
+            <div>
+              <ul>
+                {this.state.friends.map((item, index) => {
+                  return (
+                    <li key={item.name}>
+                      {item.name} {item.age}
+                      <button onClick={() => this.incrementAge(index)}>
+                        age+1
+                      </button>
+                    </li>
+                  );
+                })}
+                <button onClick={() => this.increment()}>增加人名</button>
+              </ul>
+            </div>
+          );
+        }
+
+        shouldComponentUpdate(newProps, newState) {
+          return true;
+        }
+
+        /*
+        state中不可变数据的力量：
+        
+        */
+        increment() {
+          /*
+          开发中不要使用这种方式： PureComponent中render函数不会更新
+          const newData = { name: 'tom', age: 30 };
+          this.state.friends.push(newData);
+          this.setState({
+            friends: this.state.friends,
+          });
+          */
+
+          let newFrinds = [...this.state.friends];
+          newFrinds.push({ name: 'tom', age: 30 });
+          this.setState({
+            friends: newFrinds,
+          });
+        }
+        incrementAge(index) {
+          let newFriends = [...this.state.friends];
+          newFriends[index].age += 1;
+          this.setState({
+            friends: newFriends,
+          });
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // (1) 箭头函数的this指向：根据外层函数作用域来决定
+      function foo() {
+        return (a) => {
+          console.log(this.a);
+        };
+      }
+      var obj1 = {
+        a: 2,
+      };
+      var obj2 = {
+        b: 3,
+      };
+
+      var bar = foo.call(obj1);
+      bar.call(obj2);// 
+
+      /*
+        (1) 继承其实就是复制 （子类复制了父类的内容）
+       （2）多态：在继承链的不同层次中一个方法名可以被多次定义，当调用方法时会自动选择合适的定义
+       （3）子类如果继承多个父类： 相同的方法在子类中如何抉择该选择哪一个【钻石问题】
+       （4）
+      */
+    </script>
+  </head>
+  <body></body>
+</html>

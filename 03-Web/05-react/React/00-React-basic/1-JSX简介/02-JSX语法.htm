@@ -21,13 +21,16 @@
         }
 
         render() {
+          const { movies } = this.state;
           return (
             <div>
               <h2>电影列表</h2>
               <ul>
-                {this.state.movies.map((item, index) => {
+                {/*为什么列表的子项要添加唯一的key: 虚拟DOM的渲染有关系*/}
+                {movies.map((item, index) => {
                   return (
                     <li
+                      key={item}
                       onClick={(event) => {
                         this.liClick(item, index, event);
                       }}

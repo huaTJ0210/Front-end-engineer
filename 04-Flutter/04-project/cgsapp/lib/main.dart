@@ -1,16 +1,13 @@
-import 'package:cgsapp/views/business/businessDetailPage.dart';
-import 'package:cgsapp/views/login/loginPage.dart';
-import 'package:cgsapp/models/userModel.dart';
+import 'package:cgsapp/router/router.dart';
 import 'package:flutter/material.dart';
 
 import 'configs/Global.dart';
 
-import 'views/business/businessListPage.dart';
-import 'views/business/handleInstructions.dart';
-import 'views/home/home.dart';
-import 'views/mine/certificateListPage.dart';
-import 'views/mine/mine.dart';
-import 'views/records/records.dart';
+import 'pages/cheguansuo/appointment/cgs_records_list_page.dart';
+import 'pages/cheguansuo/login/login_page.dart';
+import 'pages/cheguansuo/home/home_page.dart';
+import 'pages/cheguansuo/login/model/user_model.dart';
+import 'pages/cheguansuo/mine/cgs_mine_page.dart';
 
 void main() {
   // app启动前初始化全局配置变量
@@ -30,12 +27,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MainPage(title: '首页'),
-      routes: {
-        'loginPage': (BuildContext context) => LoginPage(),
-        'businessListPage': (BuildContext context) => BusinessListPage(),
-        'businessDetailPage': (BuildContext context) => BusinessDetailPage(),
-        'certificateListPage': (BuildContext context) => CertificateListPage()
-      },
+      routes: ZLRouter.routes,
       onGenerateRoute: (RouteSettings settings) {
         if (!UserModel.instance.isLogin()) {
           return MaterialPageRoute(
@@ -59,7 +51,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
-  var pages = [new HomePage(), new RecordsPage(), new MinePage()];
+  var pages = [new HomePage(), new CGSRecordsListPage(), new CGSMinePage()];
   _onItemTap(int index) {
     if (UserModel.instance.isLogin()) {
       setState(() {

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+    <style>
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      .tab-control {
+        display: flex;
+      }
+      .tab-item {
+        flex: 1;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+      }
+
+      .tab-item-active {
+        border-bottom: 2px solid red;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class TabControl extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            currentIndex: 0,
+          };
+        }
+
+        render() {
+          const { items, tabClick } = this.props;
+          const { currentIndex } = this.state;
+          return (
+            <div>
+              <ul className='tab-control'>
+                {items.map((item, index) => {
+                  return (
+                    <li
+                      className={
+                        'tab-item' +
+                        (index == currentIndex ? ' tab-item-active' : '')
+                      }
+                      onClick={() => {
+                        this.itemClick(index);
+                      }}
+                    >
+                      {item}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        }
+        itemClick(index) {
+          this.setState({
+            currentIndex: index,
+          });
+          this.props.tabClick(index);
+        }
+      }
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.items = ['流行', '新歌', '精选'];
+          // 次数不需要维护currentIndex；
+          // 切换页面路由只需要根据TabControl的反向调用的index切换即可
+          this.state = {
+            currentIndex: 0,
+          };
+        }
+
+        render() {
+          const { currentIndex } = this.state;
+          return (
+            <div>
+              <TabControl
+                items={this.items}
+                tabClick={(index) => {
+                  this.changeSelectItem(index);
+                }}
+              />
+              <h3>{items[currentIndex]}</h3>
+            </div>
+          );
+        }
+        // 改变当前选中
+        changeSelectItem(index) {
+          this.setState({
+            currentIndex: index,
+          });
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

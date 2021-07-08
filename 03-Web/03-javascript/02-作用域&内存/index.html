@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // (1)作用域中的变量
+    var a = 0;
+    console.log(a);
+    a = 1;
+    console.log(a);
+
+    var b = 0; // 编译阶段进行标识符的声明--会搜索作用域，运行阶段进行标识符的赋值--会搜索作用域
+    var b = 3; 
+
+    // (2)程序中的状态指的是变量值的可修改性；
+
+    /*
+      (3)标识符在内存中存储的位置
+      + 栈 ： 局部变量和函数形参等
+      + 堆 ： 程序员自己分配的区域（手动创建的对象）
+      + 全局区（静态区）： 全局变量和静态变量
+      + 文字常量区 ： 存放常量字符串
+      + 代码区 ： 存放函数的二进制代码
+    */ 
+
+    // (4) 一套良好的规则存储变量，之后再能方便的找到变量，这套规则成为作用域
+
+    /*
+      (5)编译过程的三部曲：
+      + 分词/词法分析 ：将代码进行拆分：  var 、 a 、 = 、 0 ；
+      + AST ：将分词的数组转变为抽象语法树
+      + 将AST转变为机器代码
+    */ 
+
+   /*
+     (6) 两种查询方式：
+     + LHS ： 在作用域中查找标识符进行赋值行为： 未找到严格模式下会报错，非严格模式下会在全局作用下创建一个对象；
+     + RHS ： 在作用域中查找标识符的值 ： 未找到则报：ReferenceError，找到标识符但是执行的操作不合理
+     比如对string变量a执行 a()函数的调用则会报TypeError；
+   */
+
+
+     
+  </script>
+</body>
+</html>

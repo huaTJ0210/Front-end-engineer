@@ -7,4 +7,9 @@ void main() {
   const country = 'China'; // 编译时常量，声明时必须要指定初始值
   final city = 'beijing'; // 运行时常量，比如属性，可以在初始化函数中再赋值
   print('${country + ':' + city}');
+  // (3) 如果不确定一个变量的类型
+  dynamic roomName = 'li';
+  roomName = 123;
+  print(roomName);
+  // (4)Object类型 
 }

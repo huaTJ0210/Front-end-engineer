@@ -23,11 +23,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  dio: 3.0.10
-  webview_flutter: ^1.0.7
+  dio: 4.0.0
+  webview_flutter: ^2.0.8
   crypto: ^2.0.6
-  flutter_swiper: ^1.1.6
-  fluttertoast: ^7.1.6
+  flutter_swiper_null_safety: ^1.0.0
+  fluttertoast: ^8.0.7
   path_provider: ^1.6.27
 
   # The following adds the Cupertino Icons font to your application.

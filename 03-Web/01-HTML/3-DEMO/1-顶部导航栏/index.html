@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style-type: none;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      input,
+      button {
+        outline: none;
+        border: 0;
+      }
+      .app-header {
+        height: 75px;
+        font-size: 14px;
+        background-color: #242424;
+        border-bottom: 3px solid red;
+      }
+      .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 1200px;
+        line-height: 75px;
+        margin: 0 auto;
+      }
+      .header-left {
+        display: flex;
+      }
+      .logo {
+        display: inline-block;
+        width: 176px;
+        height: 70px;
+        background: url(./logo.png) no-repeat 0 0;
+        text-indent: -9999px;
+      }
+      .header-left .nav {
+        display: flex;
+      }
+      .header-left .nav a {
+        display: block;
+        padding: 0 20px;
+      }
+      .header-left .nav a:hover {
+        background-color: black;
+      }
+
+      .header-right {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 75px; /*??? 不设置高度有问题*/
+      }
+      .header-right .search {
+        padding: 8px 15px;
+        border-radius: 23px;
+        color: lightgray;
+        font-size: 12px;
+        border: 1px solid lightgray;
+        background-color: white;
+      }
+      .header-right .user-center {
+        padding: 8px 15px;
+        margin: 0 20px;
+        border: 1px solid lightgray;
+        border-radius: 23px;
+        font-size: 12px;
+        color: white;
+        background-color: transparent;
+      }
+      .header-right .login {
+        font-size: 12px;
+        background-color: transparent;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-header">
+      <div class="content">
+        <div class="header-left">
+          <h2>
+            <a class="logo" href="/"> 网易云音乐 </a>
+          </h2>
+          <ul class="nav">
+            <li><a href="#">发现音乐</a></li>
+            <li><a href="#">我的音乐</a></li>
+            <li><a href="#">朋友</a></li>
+            <li><a href="#">商城</a></li>
+            <li><a href="#">音乐人</a></li>
+            <li><a href="#">下载客户端</a></li>
+          </ul>
+        </div>
+        <div class="header-right">
+          <button class="search">音乐/视频/电台</button>
+          <button class="user-center">创作者中心</button>
+          <button class="login">登录</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const test = 'javacript';
+      console.log(test);
+    </script>
+  </head>
+  <body>
+    <div>页面渲染内容</div>
+    <p id="p">12345</p>
+  </body>
+  <script>
+    // (1) JavaScript主线程执行代码
+    let a = 1;
+    console.log('a:' + a);
+
+    // （2）DOM的操作需要重新渲染,执行控制权直接较高了渲染线程
+    const p = document.getElementById('p');
+    p.innerHTML = '重新渲染的内容';
+
+    // (2-1) 添加一个宏任务到事件队列中
+    setTimeout(() => {
+      console.log('宏任务执行');
+    }, 0);
+
+    // (2-2) 
+    requestAnimationFrame(() => {
+      // javascript 主线程执行完毕后执行
+      console.log('requestAnimationFrame：》》》');
+      p.innerHTML = '(1)普通渲染之前渲染';
+    });
+
+    // (3)控制权交付给JavaScript主线程
+    let b = 2;
+    console.log('b:' + b);
+    let c = 3;
+    console.log('c:' + c);
+  </script>
+</html>

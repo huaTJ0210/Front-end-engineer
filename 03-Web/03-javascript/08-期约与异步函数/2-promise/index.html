@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      
+
+      /*
+          (0) 事件循环 ：它是一个在 JavaScript 引擎等待任务，执行任务，
+           进入休眠状态，等待更多任务这几个状态之间转换的无限循环；
+           while(queue.waitForMessage()){
+             queue.processNextMessage();
+           }
+        */
+
+      //(1) Promise基础
+      let promise = new Promise((resolve, reject) => {
+        // 执行器函数是同步执行的，因为他是promise的初始化程序
+        console.log('executor:(1)');
+        reject('error');
+      }).then(
+        (value) => {
+          console.log(value);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

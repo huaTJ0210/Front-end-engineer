@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 代理捕获器与反射方法
+
+      const person = { name: 'li' };
+      const proxy = new Proxy(person, {
+        get(target, property, receiver) {
+          // 捕获器不变式；target.property如果是不可写或者不可配置
+          return Reflect.get(...arguments);
+        },
+        set(target, property, value, receiver) {
+          return Reflect.set(...arguments);
+        },
+        has(target, property) {
+          // 'name' in proxy
+          return Reflect.has(...arguments);
+        },
+        defineProperty(target, property, descriptor) {
+          return Reflect.defineProperty(target, property, descriptor);
+        },
+        apply(target, thisArg, argumentsList) {
+          // 调用函数时的拦截
+          return Reflect.apply(...arguments);
+        },
+        construct(target, argumentsList, newTarget) {
+          // 拦截new
+          return Reflect.construct(...arguments);
+        },
+      });
+      console.log(proxy.name);
+
+      //
+    </script>
+  </head>
+  <body></body>
+</html>

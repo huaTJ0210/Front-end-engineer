@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    // 委托是一个强大的设计模式，和父类、子类、继承、多态等概念完全不同
+      let Task = {
+        setId: function (ID) {
+          this.id = ID;
+        },
+        outputID: function () {
+          console.log(this.id);
+        },
+      };
+
+      //让XYZ委托Task
+      let XYZ = Object.create(Task);
+      XYZ.prepareTask = function(ID,label){
+        // 较好的API设计规范是委托尽量在内部实现，不要暴露出去；
+        this.setId(ID);// id绑定到了XYZ上；在委托设计中最好把状态保存在委托者（XYZ）上
+        this.label = label;
+      }
+      // 在委托代理中尽量避免在[[Prototype]]不同层级上使用相同的方法名称
+      XYZ.outputTaskDetails = function(){
+        this.outputID();
+        console.log(this.label);
+      }
+
+
+    </script>
+  </body>
+</html>

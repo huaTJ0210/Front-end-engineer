@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            counter: 0,
+            message: 'hello world',
+            title: '中国',
+          };
+        }
+
+        render() {
+          return (
+            <div>
+              <h3>{this.state.counter}</h3>
+              <h3>{this.state.message}</h3>
+              <h3>{this.state.title}</h3>
+              <button
+                onClick={() => {
+                  this.increment();
+                }}
+              >
+                +1
+              </button>
+              <button
+                onClick={() => {
+                  this.changeCounter();
+                }}
+              >
+                async change count
+              </button>
+            </div>
+          );
+        }
+        increment() {
+          /*
+            (1) 使用setState重新更改组件的状态，是希望React根据最新state来重新渲染页面，如果直接修改
+            state的属性值，React无法进行更新操作
+            （2） React并未实现像Vue2中Object.defineProperty或者Vue3中的Proxy的方式来监听数据的变化
+            （3）所以再react中必须使用setState
+
+            （一）react的合成事件、react生命周期
+          */
+          this.setState(
+            {
+              counter: this.state.counter + 1,
+            },
+            () => {
+              console.log('更新完毕');
+            }
+          );
+          /*
+            setState:是异步操作还是同步操作？
+            （1）setState设计为异步的原因：
+            + setstate设计为异步：提高效率，避免render函数的频繁更新
+            + 避免子组件props依赖父组件的state中的属性，造成state更新后，render函数没有执行，导致props和state中的值不一致
+          
+            */
+          console.log(this.state.counter);
+          // setState传入函数作为参数，
+          this.setState((preState, preProps) => {
+            return {
+              message: preState.message + ':123',
+            };
+          });
+
+          // (2) setState变成同步行为: 原始DOM的事件监听
+          setTimeout(() => {
+            this.setState({
+              title: 'china',
+            });
+            console.log(this.state.title); // china
+          }, 2);
+        }
+
+        componentDidUpdate() {
+          // 获取异步更新后的结果
+          // console.log(this.state.counter);
+        }
+        /*
+          setState同步更新的情况
+          （1）计时器
+          （2）DOM事件监听
+        */
+        changeCounter() {
+          setTimeout(() => {
+            this.setState({
+              counter: this.state.counter + 1,
+            });
+            // 同步更新
+            console.log('async--log');
+            console.log(this.state.counter);
+          }, 3000);
+        }
+
+        /*
+         (1)setstate数据合并
+         Object.assign({},preState,paritalState);
+         （2）setState调用内部进行调用的合并操作
+         对updateQueue进行遍历，然后合并state
+       */
+
+        /*
+
+       （2） 列表中key的使用
+      <ul>
+        <li key='111'>1</li> 
+        <li key='222'>2</li>   
+      </ul>
+
+        
+          keys的优化：
+          当子元素（li）拥有key时，React使用key来匹配原有树上的子元素以及最新树上的子元素；
+          在列表的头部增加元素的场景中，key为111和key为222的元素仅仅进行位移，不需要进行任何的修改；
+          将key为333的元素插到最前的位置即可
+
+          key的要求：
+          （1）不要使用随机数
+          （2）不要使用index作为key
+          （3）key要保证唯一性
+       */
+
+        /*
+         (3) render函数的调用
+         render函数调用，一些子组件不需要更新的需要设置不要更新
+
+         优化：
+         PureComponent ： 会自动进行（state&props）的浅层比较
+       */
+        shouldComponentUpdate(nextProps, nextState) {
+          return true;
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .banner {
+        position: relative;
+        background-color: red;
+        width: 300px;
+        height: 270px;
+        margin: 0 auto;
+      }
+
+      .banner::after {
+        position: absolute;
+        content: '123';
+        right: -68px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+      }
+      .banner::before {
+        position: absolute;
+        content: 'xyz';
+        left: -68px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+      }
+
+      .arrow {
+        position: absolute;
+        background-color: orange;
+        left: 0;
+        right: 0;
+        top: 50%;
+        /* transform: translateY(-50%); */
+      }
+      .left {
+        position: absolute;
+        left: -68px;
+      }
+      .right {
+        position: absolute;
+        right: -68px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner">
+      <!-- <div class="arrow">
+        <div class="left">1</div>
+        <div class="right">2</div>
+      </div> -->
+    </div>
+  </body>
+</html>

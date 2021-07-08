@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // (1) 这种模式在JavaScript中被称为模块
+      function CoolModule() {
+        var something = 'cool';
+        var another = [1, 2, 3];
+        function doSomething() {
+          console.log(something);
+        }
+        function doSomethingelse() {
+          console.log(another.join(','));
+        }
+        return {
+          dosomething: doSomething,
+          doSomethingelse: doSomethingelse,
+        };
+      }
+
+      // (2)
+      var myModule = (function Manager() {
+        var Modules = {};
+        function define(name, deps, impl) {
+          for (var i = 0; i < deps.length; i++) {
+            deps[i] = modules[deps[i]];
+          }
+          modules[name] = impl.apply(impl, deps);
+        }
+        function get(name) {
+          return modules[name];
+        }
+        return {
+          get: get,
+          define: define,
+        };
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 关联关系
+      let anotherObj = {
+        a: 2,
+        cool: function () {
+          console.log('cool!');
+        },
+      };
+      let someObj = Object.create(anotherObj);
+      //（1）直接调用
+      someObj.cool();
+      // (2) 使用委托代理模式
+      someObj.doCool = function () {
+        // 这样可以使得api的设计更加清晰
+        this.cool();
+      };
+      someObj.doCool();
+
+      /*
+      （1）
+        由于[[Prototype]]机制的存在使得someObj与anotherObj之间有了关联；
+        在someObj中找不到的方法和属性可以通过[[Prototype]]进行查找调用；
+        【但是此种设计不合理，这使得程序变得很难理解，当出现方法无法找到时可以采用代理（proxy）】
+      */
+
+      /*
+      （2）
+        someObj中查询属性a会触发[[Get]]操作，
+        如果someObj中不存在此属性，那么就会查找对象内部的[[Prototype]]关联的对象，
+        这个关联关系实际上定义了一条“原型链”（有点像嵌套的作用域链），查找属性会对它进行遍历；
+      */ 
+      const a = someObj.a;
+      console.log(a);
+
+      /*
+       (3)
+       传统面向对象中对象的创建是对类进行的复制；
+       JavaScript中是不会进行复制的，对象之间通过内部的[[Prototype]]链进行关联；
+       所以以“继承”结尾术语，无法帮助理解JavaScript的真实机制；相比之下委托更合理；
+             */
+    </script>
+  </body>
+</html>
