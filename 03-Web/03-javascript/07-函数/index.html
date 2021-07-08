@@ -15,34 +15,8 @@
           sayHello: _sayHello,
         };
       })();
-      // (2) generator 函数
+  
 
-      function* generatorNum() {
-        const first = yield 1;
-        console.log(first);
-        const second = yield 2;
-        console.log(second);
-        yield 3;
-      }
-      const itNum = generatorNum();
-      itNum.next();
-      itNum.next();
-      itNum.next('second');
-
-      function* foo() {
-        console.log('function start!!');
-        const result = yield new Promise((resolve, reject) => {
-          setTimeout(() => {
-            resolve('hello generator!!');
-          }, 3000);
-        });
-        console.log(result);
-      }
-      const it = foo();
-      it.next().value.then((value) => {
-        // 如果next函数没有传递参数，则yield的返回值是undefined
-        it.next(value);
-      });
     </script>
   </head>
   <body></body>

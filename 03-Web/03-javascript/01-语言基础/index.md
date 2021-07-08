@@ -315,7 +315,7 @@ typeof NaN // "number"
 typeof null // "object"  ： null被认为是一个对空对象的引用
 ```
 
-#### 1、Boolean
+#### 1、boolean
 
 ```javaScript
 // (1) 作为构造函数
@@ -340,7 +340,7 @@ Boolean(/foo/); // true
 
 #### 2、 特殊类型
 
-##### 2.1 Null
+##### 2.1 null
 
 > null ：表示是一个表示“空”的对象，转为数值时为0;
 >
@@ -352,7 +352,7 @@ Boolean(/foo/); // true
 >
 > 【解析网络请求数据时，会出现null的情况】
 
-##### 2.2 Undefined
+##### 2.2 undefined
 
 > 是一个表示"此处无定义"的原始值，转为数值时为NaN
 
@@ -380,7 +380,7 @@ undefined == null
 >
 > 设计者表示如果null自动转为0，很不容易发现错误，就又设计了undefined，表示“此处无定义”的原始值，转为数字为NaN
 
-#### 3、Number类型
+#### 3、number类型
 
 ##### 3.1 整数和浮点数
 
@@ -462,7 +462,7 @@ isFinite(-1) // true
 
 ```
 
-#### 4、String类型
+#### 4、string类型
 
 ##### 4.1 字符集
 
@@ -493,9 +493,9 @@ $('#result').append(`
 
 // 4: 实例方法：includes(), startsWith(), endsWith() 
 let s = 'Hello world!';
-//使用第二个参数n时，endsWith的行为与其他两个方法有所不同。它针对前n个字符，而其他两个方法针对从第n个位置直到字符串结
+//使用第二个参数n时，endsWith的行为与其他两个方法有所不同。它针对前n个字符，而其他两个方法针对从第n个位置直到字符串结尾
 s.startsWith('world', 6) // true
-s.endsWith('Hello', 5) // true
+s.endsWith('Hello', 5) // true，前5个位置中存在hello
 s.includes('Hello', 6) // false
 
 // 5: 实例方法：repeat()  
@@ -756,7 +756,7 @@ x ** y
 
 ### 4、 类型检测
 
-#### 4.1  typeof ： 可以返回一个值的数据类型
+#### 4.1  typeof ： 可以返回一个值的数据类型字符串
 
 ```javascript
 // 判断基本类型 

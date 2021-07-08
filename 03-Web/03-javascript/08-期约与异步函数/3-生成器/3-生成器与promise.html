@@ -8,6 +8,7 @@
   </head>
   <body>
     <script>
+      // --- (1) ---
       function reuqestOne() {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -37,6 +38,31 @@
       it.next();
       it.next();
       it.next();
+
+      // ----- (2) 生成器将异步变成同步调用 -----
+
+      function componentDidMount() {
+        const it = foo();
+        it.next().value.then((value) => {
+          // 如果next函数没有传递参数，则yield的返回值是undefined
+          it.next(value);
+        });
+        // 上述步骤可以使用runner函数直接执行生成函数 runner(foo);
+      }
+      function* foo() {
+        console.log('function start!!');
+        const result = yield request(); // 编程方式变为了同步式编程
+        console.log(result);
+      }
+
+      function request() {
+        // 模拟网络请求
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve('hello generator!!');
+          }, 3000);
+        });
+      }
     </script>
   </body>
 </html>

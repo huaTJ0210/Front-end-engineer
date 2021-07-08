@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // （1）判断输入的两个值是否完全相等polyfill
+      if (!Object.is) {
+        Object.is = function (x1, x2) {
+          // -0，+0 ： 解决 -0 和 +0 相等的问题
+          if (x1 === 0 && x2 === 0) {
+            return 1 / x1 === 1 / x2;
+          }
+          // NaN ： 解决NaN不等于自身的问题
+          if (x1 !== x1) {
+            return x2 === x2;
+          }
+          //other
+          return x1 === x2;
+        };
+      }
+
+      // (2) bind函数的polyfill
+      Function.prototype.bind = function (oThis) {
+        if (typeof this !== 'function') {
+          throw new TypeError(
+            'Function.prototype.bind what is trying to bound is not a function'
+          );
+        } else {
+          var aArgs = Array.prototype.slice.call(arguments, 1); // []
+          var fToBind = this; // foo
+          var fNOP = function () {};
+          var fBound = function () {
+            console.log(this); // 当前this需要看fBound的调用位置
+            console.log(oThis); // {}
+            return fToBind.apply(
+              this instanceof fNOP && oThis ? this : oThis, // 判断绑定函数是否被new关键字调用，如果调用了就返回绑定的this
+              aArgs.concat(Array.prototype.slice.call(arguments))
+            );
+          };
+          fNOP.prototype = this.prototype;
+          fBound.prototype = new fNOP();
+          return fBound;
+        }
+      };
+
+      var bindFoo = foo.bind({ a: 1 });
+      // var bar = new bindFoo();
+      // console.log(bar);
+    </script>
+  </body>
+</html>
