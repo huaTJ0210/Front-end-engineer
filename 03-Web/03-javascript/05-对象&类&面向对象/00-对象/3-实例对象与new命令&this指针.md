@@ -100,4 +100,7 @@ counter.count;// 1
 
       
 ```
+### 3、super
+
+super:间接代表 Object.getPrototypeOf();
 

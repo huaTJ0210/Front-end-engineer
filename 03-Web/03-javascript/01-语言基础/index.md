@@ -536,12 +536,13 @@ b64Decode('JUU0JUJEJUEwJUU1JUE1JUJE') // "你好"
 
 #### 5、Symbol类型
 
-> Symbol是ES6新增的符号类型
+> Symbol是ES6新增的符号类型:
+> 符号的主要意义是创建一个类似字符串的不会与其任何值冲突的值
+> 使用符号值为自定义事件命名
 
 ```javascript
 // (1)基本使用 
-let sym  = Symbol();
-console.log(typeof sym); // symbol
+let sym  = Symbol(); //'symbol'
 // (2)使用全局符号注册表
 let foolGlobal = Symbol.for('foo');
 console.log(typeof foolGlobal); // symbol
