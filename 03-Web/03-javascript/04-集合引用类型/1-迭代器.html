@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+     (1)Iterator： 迭代器，用于从数据源有序的、连续的、一一获取数据的方式
+     + @@iterator(){method}: 产生一个Iterator
+     + 实现此协议的需要提供 next()方法每次调用返回IteratorResult的结果{value:'',done:true/false}
+     
+    */
+
+      let array = ['a', 'b', 'c'];
+      let iterator = array[Symbol.iterator](); // 获取迭代器
+      const frist = iterator.next();
+      console.log(frist); // 获取数组的第一个位置的元素{value:'a',done:false}
+
+      /*
+        (2) for..of 等价于for循环的形式
+      */
+
+      // 定义一个对象并实现iterable接口
+      let it = {
+        [Symbol.iterator]() {
+          let count = 0;
+          return {
+            [Symbol.iterator]() {
+              return this;
+            },
+            next() {
+              // 自定义对象成为iterable
+              if (count < 100) {
+                return { value: count++, done: false };
+              } else {
+                return { done: true };
+              }
+            },
+            return(v) {
+              return { value: v, done: true };
+            },
+          };
+        },
+      };
+
+      for (let item of it) {
+        console.log(item);
+      }
+
+      // let iterator = it[Symbol.iterator]();
+      // for (let ret = iterator.next(); !ret.done; ret = ret.next()) {
+      //   let value = ret.value;
+      // }
+      for (var res; (res = it.next() && !res.done); ) {
+        let value = res.value;
+      }
+
+      // (3) 自定义迭代器：斐波那契数列
+      var Fib = {
+        [Symbol.iterator]() {
+          var n1 = 1,
+            n2 = 1;
+
+          return {
+            // 使得迭代器对象变成iterable
+            [Symbol.iterator]() {
+              return this;
+            },
+            next() {
+              var current = n2;
+              n2 = n1;
+              n1 = n1 + current;
+              return { value: current, done: false };
+            },
+            return(v) {
+              console.log('abandoned!!');
+              return { value: v, done: true };
+            },
+          };
+        },
+      };
+
+      // (4)动作运行一次一个条目
+      let tasks = {
+        [Symbol.iterator]() {
+          let steps = this.actions.slice();
+          return {
+            [Symbol.iterator]() {
+              return this;
+            },
+            next(...args) {
+              if (steps.length > 0) {
+                let res = steps.shift()(...args);
+                return { value: res, done: false };
+              } else {
+                return { done: true };
+              }
+            },
+            return(v) {
+              steps.length = 0;
+              return { value: v, done: true };
+            },
+          };
+        },
+        actions: [],
+      };
+      tasks.actions.push(
+        function step1(x) {
+          console.log('step1', x);
+          return x * 2;
+        },
+        function step2(x, y) {
+          console.log('step2', x, y);
+          return x + y * 2;
+        },
+        function step3(x, y, z) {
+          console.log('step3', x, y, z);
+          return x * y + z;
+        }
+      );
+      let it = tasks[Symbol.iterator]();
+      it.next(10);
+      it.next(20, 50);
+      it.next(20, 50, 120);
+      it.next();
+
+      // (5) 数组的结构和迭代器消耗
+      var a = [1, 2, 3, 4, 5];
+      var it = a[Symbol.iterator]();
+
+      var [x, y] = it; // x = it.next();
+      var [z, ...w] = it; //w = it.next知道 done为true
+    </script>
+  </body>
+</html>

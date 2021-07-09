@@ -12,13 +12,19 @@
   <body>
     <div id="app"></div>
     <script type="text/babel">
-      // 函数组件使用ref
-
+      // 函数组件使用ref：Refs的转发
       const Home = React.forwardRef(function (props, ref) {
         return (
           <div>
-            <h2 ref={ref}>Home</h2>
-            <button>按钮</button>
+            <h2>Home</h2>
+            <button
+              ref={ref}
+              onClick={() => {
+                console.log('Home button click');
+              }}
+            >
+              按钮
+            </button>
           </div>
         );
       });
@@ -64,6 +70,11 @@
       }
 
       ReactDOM.render(<App />, document.getElementById('app'));
+
+      
+
+
+
     </script>
   </body>
 </html>

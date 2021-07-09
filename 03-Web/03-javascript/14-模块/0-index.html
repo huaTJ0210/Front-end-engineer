@@ -24,6 +24,16 @@
         };
       }
 
+      // (1-1)是IIFE修改为单例的模式
+      var coolModule = (function coolModule(name) {
+        function greeting() {
+          console.log(name);
+        }
+        return {
+          greeting: greeting,
+        };
+      })('name');
+
       // (2)
       var myModule = (function Manager() {
         var Modules = {};
@@ -41,6 +51,16 @@
           define: define,
         };
       })();
+
+      /*
+       (3) ES6模块化
+        + ES6使用基于文件的模块化，一个文件就是一个模块，
+        + ES6模块的API是静态的，【定义完成之后不能动态增加】
+        + ES6模块是单例，每次向其他模块导入这个模块的时候，得到的是对单个中心实例的引用；
+        + ES6模块的公开API中暴露的属性和方法并不是仅仅的值或者引用赋值，对于ES6来说导出的是一个内部私有变量
+        如果外界发生修改，也会影响其他模块的值；
+        + 
+      */ 
     </script>
   </body>
 </html>

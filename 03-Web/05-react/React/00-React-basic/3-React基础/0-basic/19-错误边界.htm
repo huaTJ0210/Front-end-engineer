@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      /*
+        部分UI的JavaScript会导致整个应用崩溃；
+        为了解决这个问题，React16引入了一个新的概念：错误边界，它是一种react组件，
+        可以捕获并打印发生在其组件树任何文职的JavaScript错误，并且可以渲染出备用的组件；
+
+      */
+      class ErrorBoundary extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { hasError: true };
+        }
+        static getDerivedStateFromError(error) {
+          return { hasError: true };
+        }
+
+        componentDidCatch(error, errorInfo) {
+          // 上传服务端错误日志；
+        }
+
+        render() {
+          if (this.state.hasError) {
+            return <h1>something went wrong</h1>;
+          } else {
+            return this.props.children;
+          }
+        }
+      }
+
+      function Home() {
+        return (
+          <div>
+            <p>home</p>
+          </div>
+        );
+      }
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+        }
+
+        render() {
+          return (
+            <div>
+              <ErrorBoundary>
+                <Home></Home>
+              </ErrorBoundary>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

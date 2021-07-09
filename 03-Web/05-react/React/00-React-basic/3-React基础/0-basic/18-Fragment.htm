@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../reactjs/react.js"></script>
+    <script src="../reactjs/react-dom.js"></script>
+    <script src="../reactjs/babel.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/babel">
+      class Columns extends React.Component {
+        render() {
+          /*
+           （0）Fragments可以将你的多个子组件分组，并且保证不向DOM中添加额外的元素；
+           （1） 此处如果使用div包裹则会出现渲染问题；
+           （2）<React.Fragment> 也可以是空标签的方式 <></>；
+          */
+          return (
+            <React.Fragment>
+              <td>hello</td>
+              <td>world</td>
+            </React.Fragment>
+          );
+        }
+      }
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {};
+        }
+
+        render() {
+          return (
+            <table>
+              <tr>
+                <Columns />
+              </tr>
+            </table>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

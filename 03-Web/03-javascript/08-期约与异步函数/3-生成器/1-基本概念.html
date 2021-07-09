@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // (1)生成器语法：【当作产生器，每次的迭代都是一次消费】
+      function* foo() {
+        let x = 10;
+        let y = 20;
+        // z 是再次启动 it.next(value); 函数传入的值
+        let z = yield Math.random(); // yeild 发出一个值
+      }
+      let it = foo(); // 执行生成器仅仅是创建了一个迭代器，用来控制生成器函数的调用
+
+      // (2) 自定义一个生成器
+      function* bar() {
+        var x = yield 42;
+        console.log(x);
+      }
+
+      function bar() {
+        function nextState(v) {
+          switch (state) {
+            case 0:
+              state++;
+              return 42;
+            case 1:
+              state++;
+              x = v;
+              console.log(x);
+              return undefined;
+          }
+        }
+        let state = 0,
+          x;
+        return {
+          next(v) {
+            let ret = nextState(v);
+            return { value: ret, done: state === 2 };
+          },
+        };
+      }
+
+      /*
+      (1) 生成器的适用场景
+      + 产生一系列的值：随机字符串、自增数字、
+      + 顺序执行的任务队列
+      
+      */
+    </script>
+  </body>
 </html>

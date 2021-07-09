@@ -50,6 +50,27 @@
       }
 
       ReactDOM.render(<App />, document.getElementById('app'));
+
+      /*
+       
+      class App extends React.Component {
+         render() {
+            return React.createElement(
+              "div", 
+              {
+              id: "app",
+              name: "div"
+              },
+              React.createElement("p", {
+              className: "text"
+              }, "hello react!!"),
+              React.createElement("p", {
+              className: "babel"
+              }, "hello babel"));
+          }
+      }
+      
+      */
     </script>
   </body>
 </html>
