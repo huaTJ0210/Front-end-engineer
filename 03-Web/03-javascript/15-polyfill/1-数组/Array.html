@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <script>
+      // (1) deepClone
+      var obj = {
+        name: 'li',
+        age: 18,
+        hoddy: ['basketball', 'running', 'walking'],
+        info: {
+          address: 'beijing',
+          company: 'lxl',
+          work: 18,
+        },
+      };
+
+      // console.log(deepClone(obj));
+
+      // (2) forEach仿写
+
+      var array = ['a', 'b', 'c', 'd'];
+      array.myForEach(function (item, index) {
+        console.log(this);
+        console.log(item, index);
+      }, obj);
+
+      console.log('*******************');
+
+      // (3) map的仿写
+      var _newArray = array.myMap(function (item, index) {
+        return item + '1';
+      }, obj);
+      console.log(_newArray);
+
+      // (4) filter的仿写
+      var res4 = [2, 3, 4, 5, 6, 7, 8].myFilter(function (item, index) {
+        return item > 4;
+      }, obj);
+      console.log(res4);
+      // (5) every 的仿写
+      var res5 = [2, 3, 4].myEvery(function (item, index) {
+        return item > 3;
+      }, obj);
+      console.log(res5);
+      // (6) some
+      var res6 = [2, 3, 4].mySome(function (item, index) {
+        return item > 5;
+      }, obj);
+      console.log(res6);
+      console.log('********************');
+      // (7) reduce
+      var res7 = [2, 3, 4].myReduce(function (acc, item, index) {
+        console.log(index);
+        return acc + item;
+      }, 1);
+      console.log(res7);
+      // (8) reduce Right
+      var res8 = [2, 3, 4].myReduceRight(function (acc, item, index) {
+        console.log(index);
+        return acc + item;
+      }, 1);
+      console.log(res8);
+    </script>
+  </body>
+</html>

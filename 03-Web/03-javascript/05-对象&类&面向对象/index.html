@@ -23,12 +23,45 @@
       bar.call(obj2); //
 
       /*
-        (1) 继承其实就是复制 （子类复制了父类的内容）
-       （2）多态：在继承链的不同层次中一个方法名可以被多次定义，当调用方法时会自动选择合适的定义
-       （3）子类如果继承多个父类： 相同的方法在子类中如何抉择该选择哪一个【钻石问题】
-       （4）
-      */
+         (1) 继承其实就是复制 （子类复制了父类的内容）
+        （2）多态：在继承链的不同层次中一个方法名可以被多次定义，当调用方法时会自动选择合适的定义
+        （3）子类如果继承多个父类： 相同的方法在子类中如何抉择该选择哪一个【钻石问题】
+        （4）
+       */
 
+      /*
+         (1) 关键字class，表示一个块，其内容定义了一个函数原型的成员
+         代码块中定义的是 Foo.prototype 的成员属性
+         + class Foo 表明创建一个名为Foo的函数
+         + constructor：指定 Foo()函数的签名及函数体内容；
+       */
+
+      class Foo {
+        constructor(a, b) {
+          this.x = a;
+          this.y = b;
+        }
+        gimmeXY() {
+          return this.x + this.y;
+        }
+      }
+
+      /*
+         （2） extends
+        + 是一个语法糖，用来在两个函数原型之间建立[[Prototype]]委托链接
+        (3) super :
+      */
+      class Bar extends Foo {
+        constructor(a, b, c) {
+          // super --> Foo
+          super(a, b);
+          this.z = c;
+        }
+        gimmeXYZ() {
+          // super --> Foo.prototype
+          return super.gimmeXY() + this.z;
+        }
+      }
     </script>
   </head>
   <body></body>

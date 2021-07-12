@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      undefined:既是一个基本数据类型；又是一个原始值数据;
+      还是window的一个属性
+    */
+      // (1) 作为值或者作为数据类型
+      var a;
+      if (typeof a === 'undefined') {
+        console.log(a);
+      }
+      var b = undefined;
+      console.log(b);
+      //window.undefined 不可写，不可配置，不可枚举
+      console.log(window.undefined);
+
+      // （2）函数参数
+      function foo(c) {
+        console.log(c); // undefined
+      }
+      var res = foo();
+      console.log(res); // undefined
+
+      // （3）undefined作为变量
+      function test() {
+        // 局部作用域中是可以作为变量的标识符，全局模式下不可以，因为他
+        // 作为window的属性不可以写
+        var undefined = 1;
+        console.log(undefined);
+      }
+      test();
+
+      // (4)判断一个变量有没有被赋值；使用全等 null undefined:
+      var x = null;
+      if (x === undefined) {
+        console.log('x 已经赋值');
+      } else {
+        console.log('x 未赋值');
+      }
+
+      // (5) void + 表达式
+      // void(0):表示返回值是一个undefined
+      // <a href='javascript:void(0)'></a>
+    </script>
+  </body>
+</html>

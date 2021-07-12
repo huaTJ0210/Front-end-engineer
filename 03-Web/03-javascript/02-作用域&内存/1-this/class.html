@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Father {
+        constructor() {
+          // new --> {} --> {}.age = 44
+          this.age = 44;
+          // return {}; 可以return一个新的this = {}
+        }
+
+        // swim 函数定义在 Father.prototype上
+        swim() {
+          console.log('swim');
+        }
+      }
+
+      const father = new Father();
+      // // true
+      // console.log(Father.prototype == father.__proto__);
+      // // father.__proto__ = Father.prototype;
+      // father.swim();
+
+      class Son extends Father {
+        constructor() {
+          /*
+            避免没有对原型对象进行初始化前，丢失this添加的属性
+            
+          */ 
+          super(); // 父类绑定 new Son()创建的新对象
+          console.log(this);
+          this.hobby = 'traval';
+        }
+
+        study() {
+          console.log('son study!!');
+          this.swim();
+        }
+      }
+
+      // son.__proto__ = Son.prototype;
+      // Son.prototype.__proto__ = Father.prototype
+      const son = new Son();
+      // console.log(son.__proto__ == Son.prototype);
+      // console.log(Son.prototype.__proto__ == Father.prototype);
+      // son.study();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // ES5 ： 深拷贝对象
+      function deepClone5(source, target) {
+        var tar = target || {};
+        for (var key in source) {
+          if (source.hasOwnProperty(key)) {
+            if (typeof source[key] === 'object' && key !== null) {
+              tar[key] =
+                Object.prototype.toString.call(source[key]) === '[object Array]'
+                  ? []
+                  : {};
+              deepClone5(source[key], tar[key]);
+            } else {
+              tar[key] = source[key];
+            }
+          }
+        }
+        return tar;
+      }
+
+      // ES6
+      function deepClone(source, hashMap = new WeakMap()) {
+        if (source == undefined || typeof source !== 'object') {
+          return source;
+        }
+        if (source instanceof Date) {
+          return new Date(source);
+        }
+        if (source instanceof RegExp) {
+          return new RegExp(source);
+        }
+        // 判断当前对象是否已经被clone过了
+        if (hashMap.get(source)) {
+          return source;
+        }
+        let target = new source.constructor(); // 创建一个[]或者{}
+        // 记录当前对象已被克隆
+        hashMap.set(source, target);
+        for (let key in source) {
+          target[key] = deepClone(source[key], hashMap);
+        }
+        return target;
+      }
+
+      var obj = {
+        name: 'li',
+        age: 18,
+        hoddy: ['basketball', 'running', 'walking'],
+        info: {
+          address: 'beijing',
+          company: 'lxl',
+          work: 18,
+        },
+      };
+      // var newObj = deepClone(obj);
+      // newObj.info.work = 34;
+      // console.log(obj);
+      // console.log(newObj);
+
+      let test1 = {};
+      let test2 = {};
+
+      test2.test1 = test1;
+      test1.test2 = test2;
+
+      console.log(test2);
+    </script>
+  </body>
+</html>
